@@ -23,6 +23,8 @@ func main() {
 
 	endpoint := fire.NewEndpoint(db)
 
+	// TODO: Add authentication and protect resources.
+
 	endpoint.AddResource(&fire.Resource{
 		Model: &documentation{},
 	})
