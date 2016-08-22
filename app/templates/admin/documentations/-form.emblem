@@ -1,0 +1,18 @@
+.ui.form.error
+  .field
+    label Title
+    = input value=model.title type="text" placeholder="Physical Computing HS16"
+  .field
+    label Slug
+    = input value=model.slug type="text" placeholder="physical-computing-hs16"
+  .field
+    label Madek Set
+    = input value=model.madekSet type="text" placeholder="82108639-c4a6-412d-b347-341fe5284caa"
+  if error
+    .ui.error.message
+      .header Error
+      p = error
+  if model.isNew
+    button.ui.button{action 'create'} Create Documentation
+  else
+    button.ui.button{action 'update'} Update Documentation

@@ -1,0 +1,6 @@
+.admin
+  .ui.menu
+    .header.item Interaction Design Archive
+    link-to 'admin.index' class='item' | Dashboard
+    link-to 'admin.documentations' class='item' | Documentations
+  = outlet
