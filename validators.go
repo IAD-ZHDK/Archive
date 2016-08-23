@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strings"
 
 	"github.com/256dpi/fire"
 	"github.com/IAD-ZHDK/madek"
@@ -27,6 +28,7 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Cover = nil
 	doc.Videos = nil
 	doc.Images = nil
+	doc.Documents = nil
 	doc.Files = nil
 
 	set, err := client.CompileSet(doc.MadekSet)
@@ -35,6 +37,16 @@ func madekDataValidator(ctx *fire.Context) error {
 	}
 
 	for _, mediaEntry := range set.MediaEntries {
+		_file := file{
+			Title:    mediaEntry.Title,
+			Download: mediaEntry.DownloadURL,
+		}
+
+		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
+			doc.Documents = append(doc.Documents, _file)
+			continue
+		}
+
 		var lowRes, highRes *madek.Preview
 		var mp4Source, webmSource *madek.Preview
 
@@ -56,43 +68,31 @@ func madekDataValidator(ctx *fire.Context) error {
 			}
 		}
 
-		if lowRes != nil && highRes != nil {
-			if mp4Source != nil && webmSource != nil {
-				doc.Videos = append(doc.Videos, video{
-					image: image{
-						Title:   mediaEntry.Title,
-						LowRes:  lowRes.URL,
-						HighRes: highRes.URL,
-					},
-					MP4Source:  mp4Source.URL,
-					WebMSource: webmSource.URL,
-				})
-
-				continue
-			}
-
-			if mediaEntry.ID == doc.MadekCover {
-				doc.Cover = &image{
-					Title:   mediaEntry.Title,
-					LowRes:  lowRes.URL,
-					HighRes: highRes.URL,
-				}
-
-				continue
-			}
-
-			doc.Images = append(doc.Images, image{
-				Title:   mediaEntry.Title,
-				LowRes:  lowRes.URL,
-				HighRes: highRes.URL,
-			})
-
+		if lowRes == nil || highRes == nil {
+			doc.Files = append(doc.Files, _file)
 			continue
 		}
 
-		doc.Files = append(doc.Files, file{
-			Title:    mediaEntry.Title,
-			Download: mediaEntry.DownloadURL,
+		_image := image{
+			file:    _file,
+			LowRes:  lowRes.URL,
+			HighRes: highRes.URL,
+		}
+
+		if mediaEntry.ID == doc.MadekCover {
+			doc.Cover = &_image
+			continue
+		}
+
+		if mp4Source == nil || webmSource == nil {
+			doc.Images = append(doc.Images, _image)
+			continue
+		}
+
+		doc.Videos = append(doc.Videos, video{
+			image:      _image,
+			MP4Source:  mp4Source.URL,
+			WebMSource: webmSource.URL,
 		})
 	}
 

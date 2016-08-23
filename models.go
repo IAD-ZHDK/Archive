@@ -11,11 +11,17 @@ type documentation struct {
 	Cover      *image  `json:"cover" valid:"-"`
 	Images     []image `json:"images" valid:"-"`
 	Videos     []video `json:"videos" valid:"-"`
+	Documents  []file  `json:"documents" valid:"-"`
 	Files      []file  `json:"files" valid:"-"`
 }
 
+type file struct {
+	Title    string `json:"title"`
+	Download string `json:"download"`
+}
+
 type image struct {
-	Title   string `json:"title"`
+	file    `json:",inline" bson:",inline"`
 	LowRes  string `json:"low-res" bson:"low_res"`
 	HighRes string `json:"high-res" bson:"high_res"`
 }
@@ -24,9 +30,4 @@ type video struct {
 	image      `json:",inline" bson:",inline"`
 	MP4Source  string `json:"mp4-source" bson:"mp4_source"`
 	WebMSource string `json:"webm-source" bson:"webm_source"`
-}
-
-type file struct {
-	Title    string `json:"title"`
-	Download string `json:"download"`
 }
