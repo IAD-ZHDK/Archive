@@ -3,13 +3,15 @@ package main
 import "github.com/256dpi/fire"
 
 type documentation struct {
-	fire.Base `bson:",inline" fire:"documentation:documentations"`
-	Slug      string  `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
-	Title     string  `json:"title" valid:"required"`
-	MadekSet  string  `json:"madek-set" valid:"required" bson:"madek_set"`
-	Images    []image `json:"images" valid:"-"`
-	Videos    []video `json:"videos" valid:"-"`
-	Files     []file  `json:"files" valid:"-"`
+	fire.Base  `bson:",inline" fire:"documentation:documentations"`
+	Slug       string  `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
+	Title      string  `json:"title" valid:"required"`
+	MadekSet   string  `json:"madek-set" valid:"required" bson:"madek_set"`
+	MadekCover string  `json:"madek-cover" valid:"required" bson:"madek_cover"`
+	Cover      *image  `json:"cover" valid:"-"`
+	Images     []image `json:"images" valid:"-"`
+	Videos     []video `json:"videos" valid:"-"`
+	Files      []file  `json:"files" valid:"-"`
 }
 
 type image struct {

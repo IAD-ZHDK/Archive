@@ -24,6 +24,7 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	doc := ctx.Model.(*documentation)
 
+	doc.Cover = nil
 	doc.Videos = nil
 	doc.Images = nil
 	doc.Files = nil
@@ -59,7 +60,7 @@ func madekDataValidator(ctx *fire.Context) error {
 			if mp4Source != nil && webmSource != nil {
 				doc.Videos = append(doc.Videos, video{
 					image: image{
-						Title: mediaEntry.Title,
+						Title:   mediaEntry.Title,
 						LowRes:  lowRes.URL,
 						HighRes: highRes.URL,
 					},
@@ -70,8 +71,18 @@ func madekDataValidator(ctx *fire.Context) error {
 				continue
 			}
 
+			if mediaEntry.ID == doc.MadekCover {
+				doc.Cover = &image{
+					Title:   mediaEntry.Title,
+					LowRes:  lowRes.URL,
+					HighRes: highRes.URL,
+				}
+
+				continue
+			}
+
 			doc.Images = append(doc.Images, image{
-				Title: mediaEntry.Title,
+				Title:   mediaEntry.Title,
 				LowRes:  lowRes.URL,
 				HighRes: highRes.URL,
 			})
