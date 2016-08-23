@@ -3,6 +3,9 @@ h1 = model.title
 h2 Cover
 img height=400 src=model.cover.low-res alt=model.cover.title
 
+h2 Abstract
+= markdown-to-html model.abstract
+
 h2 Videos
 each model.videos as |video|
   video controls=1 poster=video.low-res

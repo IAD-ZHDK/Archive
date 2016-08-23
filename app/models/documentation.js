@@ -5,6 +5,7 @@ export default DS.Model.extend({
   slug: DS.attr('string'),
   madekSet: DS.attr('string'),
   madekCover: DS.attr('string'),
+  abstract: DS.attr(),
   cover: DS.attr(),
   videos: DS.attr(),
   images: DS.attr(),
