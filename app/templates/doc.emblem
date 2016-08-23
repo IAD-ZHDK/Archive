@@ -1,0 +1,4 @@
+h1 = model.title
+
+p = model.id
+p = model.madekSet

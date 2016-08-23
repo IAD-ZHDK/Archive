@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('doc', { path: 'd/:slug' });
+
   this.route('admin', function(){
     this.route('login');
     this.route('documentations', function(){
