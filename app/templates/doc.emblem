@@ -1,6 +1,7 @@
 h1 = model.title
 
-h2 Cover
+p: strong = model.subtitle
+
 img height=400 src=model.cover.low-res alt=model.cover.title
 
 h2 Abstract
