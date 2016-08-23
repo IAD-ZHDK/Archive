@@ -36,6 +36,10 @@ func madekDataValidator(ctx *fire.Context) error {
 		return fire.Fatal(err)
 	}
 
+	// TODO: Check if madek copyright field is correct.
+
+	// TODO: Extract meta data from markdown file.
+
 	for _, mediaEntry := range set.MediaEntries {
 		_file := file{
 			Title:    mediaEntry.Title,
