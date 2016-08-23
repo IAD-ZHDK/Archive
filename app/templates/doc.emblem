@@ -1,13 +1,16 @@
 h1 = model.title
 
+h2 Cover
+img height=400 src=model.cover.low-res alt=model.cover.title
+
 h2 Videos
 each model.videos as |video|
-  video controls="1" poster=video.low-res
+  video height=400 controls=1 poster=video.low-res
     source src=video.mp4-source type="video/mp4"
     source src=video.webm-source type="video/webm"
 h2 Images
 each model.images as |image|
-  img height='400' src=image.low-res alt=image.title
+  img height=400 src=image.low-res alt=image.title
 h2 Files
 ul
   each model.files as |file|

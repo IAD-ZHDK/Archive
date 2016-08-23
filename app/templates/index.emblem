@@ -3,4 +3,4 @@ h1 Interaction Design Archive
 each model as |doc|
   h2 = link-to 'doc' doc
     = doc.title
-  img src=doc.images.0.low-res height=200
+  img src=doc.cover.low-res height=200
