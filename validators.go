@@ -40,9 +40,9 @@ func madekDataValidator(ctx *fire.Context) error {
 
 		for _, preview := range mediaEntry.Previews {
 			if preview.Type == "image" {
-				if preview.Size == "x_large" {
+				if preview.Size == "large" {
 					lowRes = preview
-				} else if preview.Size == "maximum" {
+				} else if preview.Size == "x_large" {
 					highRes = preview
 				}
 			}
