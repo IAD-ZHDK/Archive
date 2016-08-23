@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"strings"
 
@@ -30,6 +31,20 @@ func madekDataValidator(ctx *fire.Context) error {
 		return fire.Fatal(err)
 	}
 
+	if len(set.MetaData["title"]) < 5 {
+		return errors.New("Title must be longer than 5 characters")
+	}
+
+	if len(set.MetaData["subtitle"]) < 50 {
+		return errors.New("Subtitle must be longer than 50 characters")
+	}
+
+	if set.MetaData["department"] != "c87159bb-acbe-435a-bfe4-57cd4e82acfd" {
+		return errors.New("Department must be 'Design'")
+	}
+
+	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
+
 	doc.Title = set.MetaData["title"]
 	doc.Subtitle = set.MetaData["subtitle"]
 
@@ -39,9 +54,23 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Documents = nil
 	doc.Files = nil
 
-	// TODO: Check if madek copyright field is correct.
-
 	for _, mediaEntry := range set.MediaEntries {
+		if len(mediaEntry.MetaData["title"]) < 5 {
+			return errors.New("Title must be longer than 5 characters")
+		}
+
+		if mediaEntry.MetaData["copyright_holder"] != "Interaction Design" {
+			return errors.New("Copyright holder must be 'Interaction Design'")
+		}
+
+		if mediaEntry.MetaData["copyright_license"] != "bc1934f6-b580-4c84-b680-c73b82c93caf" {
+			return errors.New("Copyright license must be 'Alle Rechte vorbehalten'")
+		}
+
+		if mediaEntry.MetaData["copyright_usage"] != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
+			return errors.New("Copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
+		}
+
 		_file := file{
 			Title:    mediaEntry.MetaData["title"],
 			Stream:   mediaEntry.StreamURL,
