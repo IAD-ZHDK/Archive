@@ -1,6 +1,6 @@
 h1 Interaction Design Archive
 
-ul
-  each model as |doc|
-    li = link-to 'doc' doc
-      = doc.title
+each model as |doc|
+  h2 = link-to 'doc' doc
+    = doc.title
+  img src=doc.images.0.low-res height=200

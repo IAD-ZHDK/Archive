@@ -1,4 +1,14 @@
 h1 = model.title
 
-p = model.id
-p = model.madekSet
+h2 Videos
+each model.videos as |video|
+  video controls="1" poster=video.low-res
+    source src=video.mp4-source type="video/mp4"
+    source src=video.webm-source type="video/webm"
+h2 Images
+each model.images as |image|
+  img height='400' src=image.low-res alt=image.title
+h2 Files
+ul
+  each model.files as |file|
+    li: a href=file.download = file.title
