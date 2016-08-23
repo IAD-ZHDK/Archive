@@ -8,6 +8,7 @@ type documentation struct {
 	Title      string  `json:"title" valid:"required"`
 	MadekSet   string  `json:"madek-set" valid:"required" bson:"madek_set"`
 	MadekCover string  `json:"madek-cover" valid:"required" bson:"madek_cover"`
+	Abstract   string  `json:"abstract" valid:"-"`
 	Cover      *image  `json:"cover" valid:"-"`
 	Images     []image `json:"images" valid:"-"`
 	Videos     []video `json:"videos" valid:"-"`

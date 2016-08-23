@@ -38,8 +38,6 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	// TODO: Check if madek copyright field is correct.
 
-	// TODO: Extract meta data from markdown file.
-
 	for _, mediaEntry := range set.MediaEntries {
 		_file := file{
 			Title:    mediaEntry.Title,
@@ -49,6 +47,16 @@ func madekDataValidator(ctx *fire.Context) error {
 
 		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
 			doc.Documents = append(doc.Documents, _file)
+			continue
+		}
+
+		if mediaEntry.FileName == "Abstract.md" {
+			res, err := client.Fetch(mediaEntry.StreamURL)
+			if err != nil {
+				return fire.Fatal(err)
+			}
+
+			doc.Abstract = res
 			continue
 		}
 
