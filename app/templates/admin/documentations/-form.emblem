@@ -13,6 +13,7 @@
       .header Error
       p = error
   if model.isNew
-    button.ui.button{action 'create'} Create Documentation
+    button.ui.positive.button{action 'create'} Create Documentation
   else
-    button.ui.button{action 'update'} Update Documentation
+    button.ui.positive.button{action 'update'} Update Documentation
+    button.ui.negative.button{action 'delete'} Delete Documentation

@@ -4,20 +4,19 @@ link-to 'admin.documentations.new' class="ui primary labeled icon button"
   i.add.icon
   span New Documentation
 
-table.ui.celled.table
+table.ui.table
   thead
     tr
       th Title
       th Slug
       th Madek Set
-      th Actions
   tbody
     each model as |doc|
       tr
-        td: strong = doc.title
+        td = link-to 'admin.documentations.edit' doc
+          strong = doc.title
         td = doc.slug
         td = doc.madekSet
-        td = link-to 'admin.documentations.edit' doc | Edit
     else
       tr
         td No documentations found
