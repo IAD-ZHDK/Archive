@@ -5,7 +5,7 @@ img height=400 src=model.cover.low-res alt=model.cover.title
 
 h2 Videos
 each model.videos as |video|
-  video height=400 controls=1 poster=video.low-res
+  video controls=1 poster=video.low-res
     source src=video.mp4-source type="video/mp4"
     source src=video.webm-source type="video/webm"
 h2 Images
