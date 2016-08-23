@@ -5,9 +5,10 @@ import "github.com/256dpi/fire"
 type documentation struct {
 	fire.Base  `bson:",inline" fire:"documentation:documentations"`
 	Slug       string  `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
-	Title      string  `json:"title" valid:"required"`
 	MadekSet   string  `json:"madek-set" valid:"required" bson:"madek_set"`
 	MadekCover string  `json:"madek-cover" valid:"required" bson:"madek_cover"`
+	Title      string  `json:"title" valid:"-"`
+	Subtitle   string  `json:"subtitle" valid:"-"`
 	Abstract   string  `json:"abstract" valid:"-"`
 	Cover      *image  `json:"cover" valid:"-"`
 	Images     []image `json:"images" valid:"-"`

@@ -25,22 +25,25 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	doc := ctx.Model.(*documentation)
 
+	set, err := client.CompileSet(doc.MadekSet)
+	if err != nil {
+		return fire.Fatal(err)
+	}
+
+	doc.Title = set.MetaData["title"]
+	doc.Subtitle = set.MetaData["subtitle"]
+
 	doc.Cover = nil
 	doc.Videos = nil
 	doc.Images = nil
 	doc.Documents = nil
 	doc.Files = nil
 
-	set, err := client.CompileSet(doc.MadekSet)
-	if err != nil {
-		return fire.Fatal(err)
-	}
-
 	// TODO: Check if madek copyright field is correct.
 
 	for _, mediaEntry := range set.MediaEntries {
 		_file := file{
-			Title:    mediaEntry.Title,
+			Title:    mediaEntry.MetaData["title"],
 			Stream:   mediaEntry.StreamURL,
 			Download: mediaEntry.DownloadURL,
 		}
@@ -66,17 +69,17 @@ func madekDataValidator(ctx *fire.Context) error {
 		for _, preview := range mediaEntry.Previews {
 			if preview.Type == "image" {
 				if preview.Size == "large" {
-					lowRes = preview
+					lowRes = &preview
 				} else if preview.Size == "x_large" {
-					highRes = preview
+					highRes = &preview
 				}
 			}
 
 			if preview.Type == "video" && preview.Size == "large" {
 				if preview.ContentType == "video/mp4" {
-					mp4Source = preview
+					mp4Source = &preview
 				} else if preview.ContentType == "video/webm" {
-					webmSource = preview
+					webmSource = &preview
 				}
 			}
 		}

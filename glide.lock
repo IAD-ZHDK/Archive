@@ -1,5 +1,5 @@
 hash: 4f2c8c73b3d9d3604a5f3c2a02737a4924b9312e0a143d4649bc4475cbcb361f
-updated: 2016-08-23T12:10:30.763999376+02:00
+updated: 2016-08-23T15:59:17.456853933+02:00
 imports:
 - name: github.com/256dpi/fire
   version: 55c41502c72210b435b19eee36e93a227b02ae4e
@@ -17,7 +17,7 @@ imports:
   subpackages:
   - proto
 - name: github.com/IAD-ZHDK/madek
-  version: 153c8868cf381fc58be977213e930a3dab30ef39
+  version: 0e6a8188185f4a34c7f9221a3b95cfe75723b9a2
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
 - name: github.com/julienschmidt/httprouter
