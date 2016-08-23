@@ -17,6 +17,7 @@ type documentation struct {
 
 type file struct {
 	Title    string `json:"title"`
+	Stream   string `json:"stream"`
 	Download string `json:"download"`
 }
 

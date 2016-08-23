@@ -39,6 +39,7 @@ func madekDataValidator(ctx *fire.Context) error {
 	for _, mediaEntry := range set.MediaEntries {
 		_file := file{
 			Title:    mediaEntry.Title,
+			Stream:   mediaEntry.StreamURL,
 			Download: mediaEntry.DownloadURL,
 		}
 
