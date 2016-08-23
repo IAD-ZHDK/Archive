@@ -27,6 +27,9 @@ func main() {
 
 	endpoint.AddResource(&fire.Resource{
 		Model: &documentation{},
+		Validator: fire.Combine(
+			madekDataValidator,
+		),
 	})
 
 	router.Use(cors.Middleware(cors.Config{
