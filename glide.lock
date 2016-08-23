@@ -1,5 +1,5 @@
-hash: efd472a591816ddd3227ec8eceae42320539ecb8c5ea367bd1f94ad20f729a52
-updated: 2016-08-19T15:54:32.137407407+02:00
+hash: a1b78931fbcab30afa8e52735628280cdece99001f5b3d097b0d4a523b180e14
+updated: 2016-08-23T09:08:31.866244015+02:00
 imports:
 - name: github.com/256dpi/fire
   version: 55c41502c72210b435b19eee36e93a227b02ae4e
@@ -16,6 +16,8 @@ imports:
   version: 2402d76f3d41f928c7902a765dfc872356dd3aad
   subpackages:
   - proto
+- name: github.com/IAD-ZHDK/madek
+  version: d6a9e3cb34b11af3e368322f3a2316348acbe94f
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
 - name: github.com/julienschmidt/httprouter
@@ -27,10 +29,17 @@ imports:
   subpackages:
   - jsonapi
   - routing
+- name: github.com/moul/http2curl
+  version: b1479103caacaa39319f75e7f57fc545287fca0d
+- name: github.com/parnurzeal/gorequest
+  version: b64673b971a1742b8ba91f228f1c029632d4b686
+- name: github.com/tidwall/gjson
+  version: c6faea1947cf2cb49870587f09c1d81e0aba4397
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
   - context
+  - publicsuffix
 - name: gopkg.in/go-playground/validator.v8
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/mgo.v2
