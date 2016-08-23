@@ -16,7 +16,13 @@ unless model.isNew
   each model.images as |image|
     a href=image.high-res target="_blank"
       img height=200 src=image.low-res alt=image.title
+  h3 Documents
+  ul
+    each model.documents as |document|
+      li: a href=document.stream target="_blank"
+        = document.title
   h3 Files
   ul
     each model.files as |file|
-      li: a href=file.download = file.title
+      li: a href=file.download target="_blank"
+        = file.title

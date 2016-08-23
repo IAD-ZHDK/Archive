@@ -11,7 +11,13 @@ each model.videos as |video|
 h2 Images
 each model.images as |image|
   img height=400 src=image.low-res alt=image.title
+h2 Documents
+ul
+  each model.documents as |document|
+    li: a href=document.stream target="_blank"
+      = document.title
 h2 Files
 ul
   each model.files as |file|
-    li: a href=file.download = file.title
+    li: a href=file.download target="_blank"
+      = file.title

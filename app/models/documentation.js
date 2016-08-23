@@ -8,5 +8,6 @@ export default DS.Model.extend({
   cover: DS.attr(),
   videos: DS.attr(),
   images: DS.attr(),
+  documents: DS.attr(),
   files: DS.attr()
 });
