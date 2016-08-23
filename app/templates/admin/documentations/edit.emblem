@@ -1,3 +1,18 @@
 h1 Edit Documentation
 
 = partial 'admin/documentations/form'
+
+unless model.isNew
+  h2 Madek Data
+  h3 Videos
+  each model.videos as |video|
+    video controls="1" poster=video.low-res
+      source src=video.mp4-source type="video/mp4"
+      source src=video.webm-source type="video/webm"
+  h3 Images
+  each model.images as |image|
+    img height='400' src=image.low-res alt=image.title
+  h3 Files
+  ul
+    each model.files as |file|
+      li: a href=file.download = file.title
