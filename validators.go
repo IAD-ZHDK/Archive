@@ -56,19 +56,19 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	for _, mediaEntry := range coll.MediaEntries {
 		if len(mediaEntry.MetaData["title"]) < 5 {
-			return errors.New("Title must be longer than 5 characters")
+			return errors.New("Entry title must be longer than 5 characters")
 		}
 
 		if mediaEntry.MetaData["copyright_holder"] != "Interaction Design" {
-			return errors.New("Copyright holder must be 'Interaction Design'")
+			return errors.New("Entry copyright holder must be 'Interaction Design'")
 		}
 
 		if mediaEntry.MetaData["copyright_license"] != "bc1934f6-b580-4c84-b680-c73b82c93caf" {
-			return errors.New("Copyright license must be 'Alle Rechte vorbehalten'")
+			return errors.New("Entry copyright license must be 'Alle Rechte vorbehalten'")
 		}
 
 		if mediaEntry.MetaData["copyright_usage"] != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
-			return errors.New("Copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
+			return errors.New("Entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
 		}
 
 		_file := file{
@@ -82,6 +82,7 @@ func madekDataValidator(ctx *fire.Context) error {
 			continue
 		}
 
+		// TODO: Parse collection description instead.
 		if mediaEntry.FileName == "Abstract.md" {
 			res, err := client.Fetch(mediaEntry.StreamURL)
 			if err != nil {
