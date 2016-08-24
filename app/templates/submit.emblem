@@ -1,0 +1,24 @@
+h1 Submit Documentation
+
+p The following form allows you to submit a documentation for review by a staff member.
+
+p More information about the documentation process can be found in the IAD Wiki.
+
+.ui.form.error
+  .field
+    label Project
+    = input type="text" placeholder="Awesome Smart-Fridge"
+  .field
+    label Context
+    = input type="text" placeholder="Interaction Design Process FS16"
+  .field
+    label Madek Set
+    = input type="text" placeholder="82108639-c4a6-412d-b347-341fe5284caa"
+  .field
+    label Madek Cover
+    = input type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
+  if error
+    .ui.error.message
+      .header Error
+      p = error
+  button.ui.positive.button{action 'submit'} Submit Documentation
