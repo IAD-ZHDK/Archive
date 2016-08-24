@@ -26,27 +26,27 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	doc := ctx.Model.(*documentation)
 
-	set, err := client.CompileSet(doc.MadekSet)
+	coll, err := client.CompileCollection(doc.MadekID)
 	if err != nil {
 		return fire.Fatal(err)
 	}
 
-	if len(set.MetaData["title"]) < 5 {
-		return errors.New("Title must be longer than 5 characters")
+	if len(coll.MetaData["title"]) < 5 {
+		return errors.New("Collection title must be longer than 5 characters")
 	}
 
-	if len(set.MetaData["subtitle"]) < 50 {
-		return errors.New("Subtitle must be longer than 50 characters")
+	if len(coll.MetaData["subtitle"]) < 50 {
+		return errors.New("Collection subtitle must be longer than 50 characters")
 	}
 
-	if set.MetaData["department"] != "c87159bb-acbe-435a-bfe4-57cd4e82acfd" {
-		return errors.New("Department must be 'Design'")
+	if coll.MetaData["genre"] != "c87159bb-acbe-435a-bfe4-57cd4e82acfd" {
+		return errors.New("Collection genre must be 'Design'")
 	}
 
 	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
 
-	doc.Title = set.MetaData["title"]
-	doc.Subtitle = set.MetaData["subtitle"]
+	doc.Title = coll.MetaData["title"]
+	doc.Subtitle = coll.MetaData["subtitle"]
 
 	doc.Cover = nil
 	doc.Videos = nil
@@ -54,7 +54,7 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Documents = nil
 	doc.Files = nil
 
-	for _, mediaEntry := range set.MediaEntries {
+	for _, mediaEntry := range coll.MediaEntries {
 		if len(mediaEntry.MetaData["title"]) < 5 {
 			return errors.New("Title must be longer than 5 characters")
 		}
@@ -124,7 +124,7 @@ func madekDataValidator(ctx *fire.Context) error {
 			HighRes: highRes.URL,
 		}
 
-		if mediaEntry.ID == doc.MadekCover {
+		if mediaEntry.ID == doc.MadekCoverID {
 			doc.Cover = &_image
 			continue
 		}
