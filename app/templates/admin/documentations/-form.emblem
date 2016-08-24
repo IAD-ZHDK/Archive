@@ -3,11 +3,11 @@
     label Slug
     = input value=model.slug type="text" placeholder="physical-computing-hs16"
   .field
-    label Madek Set
-    = input value=model.madekSet type="text" placeholder="82108639-c4a6-412d-b347-341fe5284caa"
+    label Madek ID
+    = input value=model.madekId type="text" placeholder="82108639-c4a6-412d-b347-341fe5284caa"
   .field
-    label Madek Cover
-    = input value=model.madekCover type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
+    label Madek Cover ID
+    = input value=model.madekCoverId type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
   if error
     .ui.error.message
       .header Error
