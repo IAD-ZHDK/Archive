@@ -5,7 +5,7 @@
     = link-to 'admin' | Admin
     h1 = model.title
     p = each model.people as |person|
-      = link-to 'person' person
+      = link-to 'person' person.slug
         = person.name
     .head
       .thumb.cover style="background-image: url({{model.cover.low-res}})" title=model.cover.title

@@ -1,7 +1,5 @@
 import DS from 'ember-data';
 
-import Person from 'archive-app/models/person';
-
 export default DS.Model.extend({
   slug: DS.attr('string'),
   madekId: DS.attr('string'),
@@ -9,6 +7,7 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   subtitle: DS.attr('string'),
   authors: DS.attr(),
+  safeAuthors: DS.attr(),
   abstract: DS.attr(),
   cover: DS.attr(),
   videos: DS.attr(),
@@ -19,10 +18,11 @@ export default DS.Model.extend({
   authorsString: Ember.computed("authors", function(){
     return this.get('authors').join(", ");
   }),
-  people: Ember.computed.map("authors", function(name){
-    return new Person({
+  people: Ember.computed.map("authors", function(name, i){
+    return {
       name: name,
-    });
+      slug: this.get('safeAuthors')[i]
+    };
   }),
   madekUrl: Ember.computed("madekId", function(){
     return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId')
