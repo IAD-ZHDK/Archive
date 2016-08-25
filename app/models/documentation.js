@@ -6,23 +6,17 @@ export default DS.Model.extend({
   madekCoverId: DS.attr('string'),
   title: DS.attr('string'),
   subtitle: DS.attr('string'),
-  authors: DS.attr(),
-  safeAuthors: DS.attr(),
   abstract: DS.attr(),
   cover: DS.attr(),
   videos: DS.attr(),
   images: DS.attr(),
   documents: DS.attr(),
   files: DS.attr(),
+  people: DS.hasMany("person"),
 
-  authorsString: Ember.computed("authors", function(){
-    return this.get('authors').join(", ");
-  }),
-  people: Ember.computed.map("authors", function(name, i){
-    return {
-      name: name,
-      slug: this.get('safeAuthors')[i]
-    };
+  peopleNames: Ember.computed.mapBy("people", "name"),
+  authors: Ember.computed("peopleNames", function(){
+    return this.get("peopleNames").join(", ");
   }),
   madekUrl: Ember.computed("madekId", function(){
     return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId')
