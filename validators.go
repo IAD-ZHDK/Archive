@@ -99,17 +99,17 @@ func madekDataValidator(ctx *fire.Context) error {
 		for _, preview := range mediaEntry.Previews {
 			if preview.Type == "image" {
 				if preview.Size == "large" {
-					lowRes = &preview
+					lowRes = preview
 				} else if preview.Size == "x_large" {
-					highRes = &preview
+					highRes = preview
 				}
 			}
 
 			if preview.Type == "video" && preview.Size == "large" {
 				if preview.ContentType == "video/mp4" {
-					mp4Source = &preview
+					mp4Source = preview
 				} else if preview.ContentType == "video/webm" {
-					webmSource = &preview
+					webmSource = preview
 				}
 			}
 		}
