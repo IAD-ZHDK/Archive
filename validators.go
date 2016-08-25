@@ -7,6 +7,8 @@ import (
 
 	"github.com/256dpi/fire"
 	"github.com/IAD-ZHDK/madek"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var client *madek.Client
@@ -47,10 +49,20 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	doc.Title = coll.MetaData.Title
 	doc.Subtitle = coll.MetaData.Subtitle
-	doc.Authors = coll.MetaData.Authors
 
-	for _, author := range doc.Authors {
-		doc.SafeAuthors = append(doc.SafeAuthors, makeSlug(author))
+	for _, author := range coll.MetaData.Authors {
+		var p person
+		err := ctx.DB.C("people").Find(bson.M{
+			"name": author,
+		}).One(&p)
+		if err == mgo.ErrNotFound {
+			continue
+		}
+		if err != nil {
+			return err
+		}
+
+		doc.PeopleIds = append(doc.PeopleIds, p.ID())
 	}
 
 	doc.Cover = nil

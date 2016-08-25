@@ -1,22 +1,25 @@
 package main
 
-import "github.com/256dpi/fire"
+import (
+	"github.com/256dpi/fire"
+	"gopkg.in/mgo.v2/bson"
+)
 
 type documentation struct {
 	fire.Base    `bson:",inline" fire:"documentation:documentations"`
-	Slug         string   `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
-	MadekID      string   `json:"madek-id" valid:"required" bson:"madek_id"`
-	MadekCoverID string   `json:"madek-cover-id" valid:"required" bson:"madek_cover_id"`
-	Title        string   `json:"title" valid:"-"`
-	Subtitle     string   `json:"subtitle" valid:"-"`
-	Authors      []string `json:"authors" valid:"-"`
-	SafeAuthors  []string `json:"safe-authors" valid:"-"`
-	Abstract     string   `json:"abstract" valid:"-"`
-	Cover        *image   `json:"cover" valid:"-"`
-	Images       []image  `json:"images" valid:"-"`
-	Videos       []video  `json:"videos" valid:"-"`
-	Documents    []file   `json:"documents" valid:"-"`
-	Files        []file   `json:"files" valid:"-"`
+	Slug         string  `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
+	MadekID      string  `json:"madek-id" valid:"required" bson:"madek_id"`
+	MadekCoverID string  `json:"madek-cover-id" valid:"required" bson:"madek_cover_id"`
+	Title        string  `json:"title" valid:"-"`
+	Subtitle     string  `json:"subtitle" valid:"-"`
+	Abstract     string  `json:"abstract" valid:"-"`
+	Cover        *image  `json:"cover" valid:"-"`
+	Images       []image `json:"images" valid:"-"`
+	Videos       []video `json:"videos" valid:"-"`
+	Documents    []file  `json:"documents" valid:"-"`
+	Files        []file  `json:"files" valid:"-"`
+
+	PeopleIds []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
 }
 
 type file struct {
@@ -38,7 +41,9 @@ type video struct {
 }
 
 type person struct {
-	fire.Base    `bson:",inline" fire:"person:people"`
-	Slug string `json:"slug" valid:"-"`
-	Name string `json:"name" valid:"-"`
+	fire.Base `bson:",inline" fire:"person:people"`
+	Slug      string `json:"slug" valid:"-"`
+	Name      string `json:"name" valid:"-"`
+
+	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations"`
 }

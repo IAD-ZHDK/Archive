@@ -1,8 +1,8 @@
 hash: be8786f4a8e01039aa1d5d69155205a05249574900a700ca7f243d65300d1788
-updated: 2016-08-25T16:38:53.87739143+02:00
+updated: 2016-08-25T22:58:07.430426182+02:00
 imports:
 - name: github.com/256dpi/fire
-  version: 0c02c15415e765d755ae7844a0af3a20c2ea1bdc
+  version: 683b7bad261ddf8a96d37719a3a1749b1bd5c3af
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
 - name: github.com/gedex/inflector
@@ -36,7 +36,7 @@ imports:
 - name: github.com/parnurzeal/gorequest
   version: b64673b971a1742b8ba91f228f1c029632d4b686
 - name: github.com/tidwall/gjson
-  version: 19f9404e517f661be51457443e2a606c2e4245ba
+  version: a6e96883938181da938aee118a203fed225f9485
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
