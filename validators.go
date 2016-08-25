@@ -31,22 +31,23 @@ func madekDataValidator(ctx *fire.Context) error {
 		return fire.Fatal(err)
 	}
 
-	if len(coll.MetaData["title"]) < 5 {
+	if len(coll.MetaData.Title) < 5 {
 		return errors.New("Collection title must be longer than 5 characters")
 	}
 
-	if len(coll.MetaData["subtitle"]) < 50 {
+	if len(coll.MetaData.Subtitle) < 50 {
 		return errors.New("Collection subtitle must be longer than 50 characters")
 	}
 
-	if coll.MetaData["genre"] != "c87159bb-acbe-435a-bfe4-57cd4e82acfd" {
+	if len(coll.MetaData.Genres) != 1 || coll.MetaData.Genres[0] != "Design" {
 		return errors.New("Collection genre must be 'Design'")
 	}
 
 	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
 
-	doc.Title = coll.MetaData["title"]
-	doc.Subtitle = coll.MetaData["subtitle"]
+	doc.Title = coll.MetaData.Title
+	doc.Subtitle = coll.MetaData.Subtitle
+	doc.Authors = coll.MetaData.Authors
 
 	doc.Cover = nil
 	doc.Videos = nil
@@ -55,24 +56,24 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Files = nil
 
 	for _, mediaEntry := range coll.MediaEntries {
-		if len(mediaEntry.MetaData["title"]) < 5 {
+		if len(mediaEntry.MetaData.Title) < 5 {
 			return errors.New("Entry title must be longer than 5 characters")
 		}
 
-		if mediaEntry.MetaData["copyright_holder"] != "Interaction Design" {
+		if mediaEntry.MetaData.Copyright.Holder != "Interaction Design" {
 			return errors.New("Entry copyright holder must be 'Interaction Design'")
 		}
 
-		if mediaEntry.MetaData["copyright_license"] != "bc1934f6-b580-4c84-b680-c73b82c93caf" {
+		if len(mediaEntry.MetaData.Copyright.Licenses) != 1 || mediaEntry.MetaData.Copyright.Licenses[0] != "Alle Rechte vorbehalten" {
 			return errors.New("Entry copyright license must be 'Alle Rechte vorbehalten'")
 		}
 
-		if mediaEntry.MetaData["copyright_usage"] != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
+		if mediaEntry.MetaData.Copyright.Usage != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
 			return errors.New("Entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
 		}
 
 		_file := file{
-			Title:    mediaEntry.MetaData["title"],
+			Title:    mediaEntry.MetaData.Title,
 			Stream:   mediaEntry.StreamURL,
 			Download: mediaEntry.DownloadURL,
 		}
