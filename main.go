@@ -32,6 +32,10 @@ func main() {
 		),
 	})
 
+	endpoint.AddResource(&fire.Resource{
+		Model: &person{},
+	})
+
 	router.Use(cors.Middleware(cors.Config{
 		Origins:        "*",
 		Methods:        "GET, POST, PUT, PATCH, DELETE",

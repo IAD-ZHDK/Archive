@@ -36,3 +36,9 @@ type video struct {
 	MP4Source  string `json:"mp4-source" bson:"mp4_source"`
 	WebMSource string `json:"webm-source" bson:"webm_source"`
 }
+
+type person struct {
+	fire.Base    `bson:",inline" fire:"person:people"`
+	Slug string `json:"slug" valid:"-"`
+	Name string `json:"name" valid:"-"`
+}
