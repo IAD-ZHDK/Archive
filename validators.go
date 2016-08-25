@@ -49,6 +49,10 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Subtitle = coll.MetaData.Subtitle
 	doc.Authors = coll.MetaData.Authors
 
+	for _, author := range doc.Authors {
+		doc.SafeAuthors = append(doc.SafeAuthors, makeSlug(author))
+	}
+
 	doc.Cover = nil
 	doc.Videos = nil
 	doc.Images = nil

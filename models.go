@@ -10,6 +10,7 @@ type documentation struct {
 	Title        string   `json:"title" valid:"-"`
 	Subtitle     string   `json:"subtitle" valid:"-"`
 	Authors      []string `json:"authors" valid:"-"`
+	SafeAuthors  []string `json:"safe-authors" valid:"-"`
 	Abstract     string   `json:"abstract" valid:"-"`
 	Cover        *image   `json:"cover" valid:"-"`
 	Images       []image  `json:"images" valid:"-"`

@@ -1,5 +1,5 @@
-hash: 4f2c8c73b3d9d3604a5f3c2a02737a4924b9312e0a143d4649bc4475cbcb361f
-updated: 2016-08-25T15:23:34.628104496+02:00
+hash: be8786f4a8e01039aa1d5d69155205a05249574900a700ca7f243d65300d1788
+updated: 2016-08-25T16:38:53.87739143+02:00
 imports:
 - name: github.com/256dpi/fire
   version: 0c02c15415e765d755ae7844a0af3a20c2ea1bdc
@@ -29,12 +29,14 @@ imports:
   subpackages:
   - jsonapi
   - routing
+- name: github.com/metal3d/go-slugify
+  version: 7ac2014b2f23e254684c08d597496681d12c6a8a
 - name: github.com/moul/http2curl
   version: b1479103caacaa39319f75e7f57fc545287fca0d
 - name: github.com/parnurzeal/gorequest
   version: b64673b971a1742b8ba91f228f1c029632d4b686
 - name: github.com/tidwall/gjson
-  version: d37f454044a30b44fbc569b86e91023c77fd3b67
+  version: 19f9404e517f661be51457443e2a606c2e4245ba
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
