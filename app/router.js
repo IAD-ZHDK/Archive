@@ -7,7 +7,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('doc', { path: 'd/:slug' });
+  this.route('documentation', { path: 'd/:slug' });
+  this.route('person', { path: 'p/:name' });
+
   this.route('submit');
 
   this.route('admin', function(){

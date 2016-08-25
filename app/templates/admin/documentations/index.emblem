@@ -9,14 +9,14 @@ table.ui.table
     tr
       th Title
       th Slug
-      th Madek Set
+      th Madek Id
   tbody
-    each model as |doc|
+    each model as |d|
       tr
-        td = link-to 'admin.documentations.edit' doc
-          strong = doc.title
-        td = doc.slug
-        td = doc.madekSet
+        td = link-to 'admin.documentations.edit' d
+          strong = d.title
+        td = d.slug
+        td: a href=d.madekUrl target='_blank' = d.madekId
     else
       tr
         td No documentations found

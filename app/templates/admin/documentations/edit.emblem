@@ -5,7 +5,9 @@ h1 Edit Documentation
 unless model.isNew
   h2 Madek Data
   h3 = model.title
-  p: strong = model.subtitle
+  p Subtitle: {{model.subtitle}}
+  p Authors: {{model.authorsString}}
+  h3 Abstract
   = markdown-to-html model.abstract
   h3 Cover
   a href=model.cover.high-res target="_blank"

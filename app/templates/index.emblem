@@ -3,7 +3,7 @@
   = link-to 'submit' | Submit
   = link-to 'admin' | Admin
   h1 Interaction Design Archive
-  each model as |doc|
-    h2 = link-to 'doc' doc
-      = doc.title
-    .thumb style="background-image: url({{doc.cover.low-res}})" title=doc.cover.title
+  each model as |d|
+    h2 = link-to 'documentation' d
+      = d.title
+    .thumb style="background-image: url({{d.cover.low-res}})" title=d.cover.title
