@@ -1,27 +1,27 @@
-h1 = model.title
-
-p: strong = model.subtitle
-
-img height=400 src=model.cover.low-res alt=model.cover.title
-
-h2 Abstract
-= markdown-to-html model.abstract
-
-h2 Videos
-each model.videos as |video|
-  video controls=1 poster=video.low-res
-    source src=video.mp4-source type="video/mp4"
-    source src=video.webm-source type="video/webm"
-h2 Images
-each model.images as |image|
-  img height=400 src=image.low-res alt=image.title
-h2 Documents
-ul
-  each model.documents as |document|
-    li: a href=document.stream target="_blank"
-      = document.title
-h2 Files
-ul
-  each model.files as |file|
-    li: a href=file.download target="_blank"
-      = file.title
+.site
+  .documentation
+    = link-to 'index' | Home
+    h1 = model.title
+    .head
+      .thumb.cover style="background-image: url({{model.cover.low-res}})" title=model.cover.title
+      p = model.subtitle
+    .videos
+      each model.videos as |video|
+        video controls=1 poster=video.low-res
+          source src=video.mp4-source type="video/mp4"
+          source src=video.webm-source type="video/webm"
+    .abstract
+      = markdown-to-html model.abstract
+    .images
+      each model.images as |image|
+        .thumb style="background-image: url({{image.low-res}})" title=image.title
+    h2 Documents
+    ul
+      each model.documents as |document|
+        li: a href=document.stream target="_blank"
+          = document.title
+    h2 Files
+    ul
+      each model.files as |file|
+        li: a href=file.download target="_blank"
+          = file.title
