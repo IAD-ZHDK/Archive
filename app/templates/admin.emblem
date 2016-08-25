@@ -3,4 +3,5 @@
     .header.item Interaction Design Archive
     = link-to 'admin.index' class='item' | Dashboard
     = link-to 'admin.documentations' class='item' | Documentations
+    = link-to 'index' class='item right' | Home
   = outlet

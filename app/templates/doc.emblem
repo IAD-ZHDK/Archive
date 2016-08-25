@@ -1,6 +1,7 @@
 .site
   .documentation
     = link-to 'index' | Home
+    = link-to 'admin' | Admin
     h1 = model.title
     .head
       .thumb.cover style="background-image: url({{model.cover.low-res}})" title=model.cover.title

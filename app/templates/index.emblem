@@ -1,4 +1,5 @@
 .site
+  = link-to 'admin' | Admin
   h1 Interaction Design Archive
   each model as |doc|
     h2 = link-to 'doc' doc
