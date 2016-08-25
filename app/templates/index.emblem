@@ -1,4 +1,6 @@
 .site
+  = link-to 'index' | Home
+  = link-to 'submit' | Submit
   = link-to 'admin' | Admin
   h1 Interaction Design Archive
   each model as |doc|
