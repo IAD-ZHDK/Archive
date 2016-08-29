@@ -1,8 +1,8 @@
 hash: 4affa64efb2e132a79afdab00b8fea79c0eb2a8d2d4586b12f6b0007e44f9709
-updated: 2016-08-29T14:51:09.953837803+02:00
+updated: 2016-08-29T15:58:59.566664782+02:00
 imports:
 - name: github.com/256dpi/fire
-  version: b0e610db506a3d67af15c40c4ed27f568613035c
+  version: bca86a78a2a8b17fecee4a6c6cbeda348c3879bb
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
 - name: github.com/gedex/inflector
