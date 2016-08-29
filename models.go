@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+
 	"github.com/256dpi/fire"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -23,6 +25,14 @@ type documentation struct {
 
 	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`
 	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
+}
+
+func (d *documentation) Validate(fresh bool) error {
+	if d.Published && d.Slug == "" {
+		return errors.New("Missing slug for published documentation")
+	}
+
+	return d.Base.Validate(fresh)
 }
 
 type file struct {
