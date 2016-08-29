@@ -4,6 +4,7 @@ export default DS.Model.extend({
   slug: DS.attr('string'),
   madekId: DS.attr('string'),
   madekCoverId: DS.attr('string'),
+  published: DS.attr('boolean'),
   title: DS.attr('string'),
   subtitle: DS.attr('string'),
   abstract: DS.attr(),
