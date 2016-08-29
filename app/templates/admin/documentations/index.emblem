@@ -9,6 +9,7 @@ table.ui.table
     tr
       th Title
       th Slug
+      th Published
       th Madek Id
   tbody
     each model as |d|
@@ -16,6 +17,7 @@ table.ui.table
         td = link-to 'admin.documentations.edit' d
           strong = d.title
         td = d.slug
+        td = d.published
         td: a href=d.madekUrl target='_blank' = d.madekId
     else
       tr

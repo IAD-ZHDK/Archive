@@ -8,6 +8,9 @@
   .field
     label Madek Cover ID
     = input value=model.madekCoverId type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
+  .field
+    label Settings
+    = ui-checkbox class="toggle" label="Published" checked=model.published onChange=(action (mut model.published))
   if error
     .ui.error.message
       .header Error
