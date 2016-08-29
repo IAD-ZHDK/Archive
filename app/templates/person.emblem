@@ -2,7 +2,7 @@
   = link-to 'index' | Home
   = link-to 'submit' | Submit
   = link-to 'admin' | Admin
-  h1 = model.name
+  h1 = model.person.name
   each model.documentations as |d|
     h2 = link-to 'documentation' d
       = d.title
