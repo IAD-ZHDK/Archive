@@ -1,12 +1,12 @@
 package main
 
 import (
-	"errors"
 	"os"
 	"strings"
 
 	"github.com/256dpi/fire"
 	"github.com/IAD-ZHDK/madek"
+	"github.com/pkg/errors"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -30,19 +30,26 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	coll, err := client.CompileCollection(doc.MadekID)
 	if err != nil {
-		return fire.Fatal(err)
+		switch errors.Cause(err) {
+		case madek.ErrNotFound:
+			return errors.New("Collection cannot be found. Did you pass the right id?")
+		case madek.ErrAccessForbidden:
+			return errors.New("Collection is not publicly accessible. Did you set the necessary permissions?")
+		default:
+			return fire.Fatal(err)
+		}
 	}
 
 	if len(coll.MetaData.Title) < 5 {
-		return errors.New("Collection title must be longer than 5 characters")
+		return errors.New("Collection title must be longer than 5 characters.")
 	}
 
 	if len(coll.MetaData.Subtitle) < 50 {
-		return errors.New("Collection subtitle must be longer than 50 characters")
+		return errors.New("Collection subtitle must be longer than 50 characters.")
 	}
 
 	if len(coll.MetaData.Genres) != 1 || coll.MetaData.Genres[0] != "Design" {
-		return errors.New("Collection genre must be 'Design'")
+		return errors.New("Collection genre must be 'Design'.")
 	}
 
 	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
@@ -90,19 +97,19 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	for _, mediaEntry := range coll.MediaEntries {
 		if len(mediaEntry.MetaData.Title) < 5 {
-			return errors.New("Entry title must be longer than 5 characters")
+			return errors.New("Entry title must be longer than 5 characters.")
 		}
 
 		if mediaEntry.MetaData.Copyright.Holder != "Interaction Design" {
-			return errors.New("Entry copyright holder must be 'Interaction Design'")
+			return errors.New("Entry copyright holder must be 'Interaction Design'.")
 		}
 
 		if len(mediaEntry.MetaData.Copyright.Licenses) != 1 || mediaEntry.MetaData.Copyright.Licenses[0] != "Alle Rechte vorbehalten" {
-			return errors.New("Entry copyright license must be 'Alle Rechte vorbehalten'")
+			return errors.New("Entry copyright license must be 'Alle Rechte vorbehalten'.")
 		}
 
 		if mediaEntry.MetaData.Copyright.Usage != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
-			return errors.New("Entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
+			return errors.New("Entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'.")
 		}
 
 		_file := file{

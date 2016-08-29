@@ -7,17 +7,19 @@ import (
 
 type documentation struct {
 	fire.Base    `bson:",inline" fire:"documentation:documentations"`
-	Slug         string  `json:"slug" valid:"required" bson:"slug" fire:"filterable,sortable"`
-	MadekID      string  `json:"madek-id" valid:"required" bson:"madek_id"`
-	MadekCoverID string  `json:"madek-cover-id" valid:"required" bson:"madek_cover_id"`
-	Title        string  `json:"title" valid:"-"`
-	Subtitle     string  `json:"subtitle" valid:"-"`
-	Abstract     string  `json:"abstract" valid:"-"`
-	Cover        *image  `json:"cover" valid:"-"`
-	Images       []image `json:"images" valid:"-"`
-	Videos       []video `json:"videos" valid:"-"`
-	Documents    []file  `json:"documents" valid:"-"`
-	Files        []file  `json:"files" valid:"-"`
+	Slug         string `json:"slug" valid:"-" bson:"slug" fire:"filterable,sortable"`
+	MadekID      string `json:"madek-id" valid:"required" bson:"madek_id"`
+	MadekCoverID string `json:"madek-cover-id" valid:"required" bson:"madek_cover_id"`
+	Published    bool   `json:"published" valid:"-" fire:"filterable"`
+
+	Title     string  `json:"title" valid:"-"`
+	Subtitle  string  `json:"subtitle" valid:"-"`
+	Abstract  string  `json:"abstract" valid:"-"`
+	Cover     *image  `json:"cover" valid:"-"`
+	Images    []image `json:"images" valid:"-"`
+	Videos    []video `json:"videos" valid:"-"`
+	Documents []file  `json:"documents" valid:"-"`
+	Files     []file  `json:"files" valid:"-"`
 
 	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`
 	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`

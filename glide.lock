@@ -1,5 +1,5 @@
-hash: be8786f4a8e01039aa1d5d69155205a05249574900a700ca7f243d65300d1788
-updated: 2016-08-29T12:13:07.415927531+02:00
+hash: 4affa64efb2e132a79afdab00b8fea79c0eb2a8d2d4586b12f6b0007e44f9709
+updated: 2016-08-29T14:51:09.953837803+02:00
 imports:
 - name: github.com/256dpi/fire
   version: b0e610db506a3d67af15c40c4ed27f568613035c
@@ -17,7 +17,7 @@ imports:
   subpackages:
   - proto
 - name: github.com/IAD-ZHDK/madek
-  version: 6e7f1668bf72df884927ff160b7a8f0646000471
+  version: 1f557fda1ecf445e18caa36bc59fc0802162dd37
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
 - name: github.com/julienschmidt/httprouter
@@ -35,6 +35,8 @@ imports:
   version: b1479103caacaa39319f75e7f57fc545287fca0d
 - name: github.com/parnurzeal/gorequest
   version: b64673b971a1742b8ba91f228f1c029632d4b686
+- name: github.com/pkg/errors
+  version: 17b591df37844cde689f4d5813e5cea0927d8dd2
 - name: github.com/tidwall/gjson
   version: 550c66c276592668d8c9532be82f4506e937725e
 - name: golang.org/x/net
