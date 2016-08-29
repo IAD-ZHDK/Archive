@@ -55,16 +55,16 @@ type video struct {
 
 type person struct {
 	fire.Base `bson:",inline" fire:"person:people"`
-	Slug      string `json:"slug" valid:"-"`
+	Slug      string `json:"slug" valid:"-" fire:"filterable"`
 	Name      string `json:"name" valid:"-"`
 
-	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations"`
+	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations"`
 }
 
 type tag struct {
 	fire.Base `bson:",inline" fire:"tag:tags"`
-	Slug      string `json:"slug" valid:"-"`
+	Slug      string `json:"slug" valid:"-" fire:"filterable"`
 	Name      string `json:"name" valid:"-"`
 
-	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations"`
+	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations"`
 }
