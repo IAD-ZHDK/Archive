@@ -1,8 +1,8 @@
 hash: be8786f4a8e01039aa1d5d69155205a05249574900a700ca7f243d65300d1788
-updated: 2016-08-25T22:58:07.430426182+02:00
+updated: 2016-08-29T12:13:07.415927531+02:00
 imports:
 - name: github.com/256dpi/fire
-  version: 683b7bad261ddf8a96d37719a3a1749b1bd5c3af
+  version: b0e610db506a3d67af15c40c4ed27f568613035c
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
 - name: github.com/gedex/inflector
@@ -17,7 +17,7 @@ imports:
   subpackages:
   - proto
 - name: github.com/IAD-ZHDK/madek
-  version: 898263fd35330edf137b9e9d291f9429522ce3b3
+  version: 6e7f1668bf72df884927ff160b7a8f0646000471
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
 - name: github.com/julienschmidt/httprouter
@@ -36,7 +36,7 @@ imports:
 - name: github.com/parnurzeal/gorequest
   version: b64673b971a1742b8ba91f228f1c029632d4b686
 - name: github.com/tidwall/gjson
-  version: a6e96883938181da938aee118a203fed225f9485
+  version: 550c66c276592668d8c9532be82f4506e937725e
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:

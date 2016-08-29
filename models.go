@@ -19,7 +19,8 @@ type documentation struct {
 	Documents    []file  `json:"documents" valid:"-"`
 	Files        []file  `json:"files" valid:"-"`
 
-	PeopleIds []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
+	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`
+	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
 }
 
 type file struct {
@@ -42,6 +43,14 @@ type video struct {
 
 type person struct {
 	fire.Base `bson:",inline" fire:"person:people"`
+	Slug      string `json:"slug" valid:"-"`
+	Name      string `json:"name" valid:"-"`
+
+	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations"`
+}
+
+type tag struct {
+	fire.Base `bson:",inline" fire:"tag:tags"`
 	Slug      string `json:"slug" valid:"-"`
 	Name      string `json:"name" valid:"-"`
 

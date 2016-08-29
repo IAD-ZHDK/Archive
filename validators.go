@@ -50,6 +50,14 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Title = coll.MetaData.Title
 	doc.Subtitle = coll.MetaData.Subtitle
 
+	doc.PeopleIDs = nil
+	doc.TagIDs = nil
+	doc.Cover = nil
+	doc.Videos = nil
+	doc.Images = nil
+	doc.Documents = nil
+	doc.Files = nil
+
 	for _, author := range coll.MetaData.Authors {
 		var p person
 		err := ctx.DB.C("people").Find(bson.M{
@@ -62,14 +70,23 @@ func madekDataValidator(ctx *fire.Context) error {
 			return err
 		}
 
-		doc.PeopleIds = append(doc.PeopleIds, p.ID())
+		doc.PeopleIDs = append(doc.PeopleIDs, p.ID())
 	}
 
-	doc.Cover = nil
-	doc.Videos = nil
-	doc.Images = nil
-	doc.Documents = nil
-	doc.Files = nil
+	for _, keyword := range coll.MetaData.Keywords {
+		var t tag
+		err := ctx.DB.C("tags").Find(bson.M{
+			"name": keyword,
+		}).One(&t)
+		if err == mgo.ErrNotFound {
+			continue
+		}
+		if err != nil {
+			return err
+		}
+
+		doc.TagIDs = append(doc.TagIDs, t.ID())
+	}
 
 	for _, mediaEntry := range coll.MediaEntries {
 		if len(mediaEntry.MetaData.Title) < 5 {
