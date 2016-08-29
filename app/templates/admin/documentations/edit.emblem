@@ -6,7 +6,8 @@ unless model.isNew
   h2 Madek Data
   h3 = model.title
   p Subtitle: {{model.subtitle}}
-  p Authors: {{model.authors}}
+  p Authors: {{model.peopleList}}
+  p Tags: {{model.tagsList}}
   h3 Abstract
   = markdown-to-html model.abstract
   h3 Cover

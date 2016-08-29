@@ -7,6 +7,9 @@
     p = each model.people as |person|
       = link-to 'person' person.slug
         = person.name
+    p = each model.tags as |tag|
+        = link-to 'tag' tag.slug
+          = tag.name
     .head
       .thumb.cover style="background-image: url({{model.cover.low-res}})" title=model.cover.title
       p = model.subtitle

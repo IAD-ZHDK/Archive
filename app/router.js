@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('documentation', { path: 'd/:slug' });
   this.route('person', { path: 'p/:slug' });
+  this.route('tag', { path: 't/:slug' });
 
   this.route('submit');
 
@@ -21,6 +22,11 @@ Router.map(function() {
     });
 
     this.route('people', function(){
+      this.route('new');
+      this.route('edit', { path: ':slug' });
+    });
+
+    this.route('tags', function(){
       this.route('new');
       this.route('edit', { path: ':slug' });
     });

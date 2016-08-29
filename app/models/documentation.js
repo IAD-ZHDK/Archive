@@ -12,11 +12,16 @@ export default DS.Model.extend({
   images: DS.attr(),
   documents: DS.attr(),
   files: DS.attr(),
-  people: DS.hasMany("person"),
+  people: DS.hasMany('person'),
+  tags: DS.hasMany('tag'),
 
   peopleNames: Ember.computed.mapBy("people", "name"),
-  authors: Ember.computed("peopleNames", function(){
+  tagNames: Ember.computed.mapBy("tags", "name"),
+  peopleList: Ember.computed("peopleNames", function(){
     return this.get("peopleNames").join(", ");
+  }),
+  tagsList: Ember.computed("tagNames", function(){
+    return this.get("tagNames").join(", ");
   }),
   madekUrl: Ember.computed("madekId", function(){
     return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId')

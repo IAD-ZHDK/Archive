@@ -4,5 +4,6 @@
     = link-to 'admin.index' class='item' | Dashboard
     = link-to 'admin.documentations' class='item' | Documentations
     = link-to 'admin.people' class='item' | People
+    = link-to 'admin.tags' class='item' | Tags
     = link-to 'index' class='item right' | Home
   = outlet
