@@ -1,4 +1,4 @@
-.ui.form.error
+.ui.form.error class=formClass
   .field
     label Slug
     = input value=model.slug type="text" placeholder="physical-computing-hs16"

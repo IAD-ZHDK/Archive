@@ -17,13 +17,18 @@ export default Ember.Mixin.create({
     this.get('model').set(key, value);
   },
   saveModel(route) {
+    this.set('formClass', 'loading');
+
     this.get('model').save().then(() => {
+      this.set('formClass', null);
+
       if(this.get('transitionWithModel')) {
         this.transitionToRoute(this.get(route), this.get('model'));
       } else {
         this.transitionToRoute(this.get(route));
       }
     }).catch(failure => {
+      this.set('formClass', null);
       this.setError(failure);
     });
   },
