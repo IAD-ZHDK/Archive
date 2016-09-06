@@ -58,7 +58,7 @@ type person struct {
 	Slug      string `json:"slug" valid:"-" fire:"filterable"`
 	Name      string `json:"name" valid:"-"`
 
-	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:tags"`
+	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:people"`
 }
 
 type tag struct {
@@ -66,5 +66,5 @@ type tag struct {
 	Slug      string `json:"slug" valid:"-" fire:"filterable"`
 	Name      string `json:"name" valid:"-"`
 
-	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:people"`
+	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:tags"`
 }
