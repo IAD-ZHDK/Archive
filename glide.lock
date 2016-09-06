@@ -1,12 +1,8 @@
-hash: 4affa64efb2e132a79afdab00b8fea79c0eb2a8d2d4586b12f6b0007e44f9709
-updated: 2016-08-29T17:12:32.618240462+02:00
+hash: a78e9ee27a1026e6502912def3acc3ecd4cf62b120f56d4c2e6c12be23a85e40
+updated: 2016-09-06T10:53:06.580057861+02:00
 imports:
-- name: github.com/256dpi/fire
-  version: b6a0ce51e675db3e9324649a5dae16da33186fca
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
-- name: github.com/gedex/inflector
-  version: 91797f1712fd58f224781be1080b8613d096187e
 - name: github.com/gin-gonic/gin
   version: 5caaac4c5c712a9e7a7de29e6c24ef46c753017f
   subpackages:
@@ -16,29 +12,28 @@ imports:
   version: 2402d76f3d41f928c7902a765dfc872356dd3aad
   subpackages:
   - proto
+- name: github.com/gonfire/fire
+  version: f681e4249ef815228d359097df343dc7c4a88fc4
+- name: github.com/gonfire/jsonapi
+  version: e6f367000a89d5e942834a41a17d1535a51a2c7d
 - name: github.com/IAD-ZHDK/madek
   version: 1f557fda1ecf445e18caa36bc59fc0802162dd37
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
-- name: github.com/julienschmidt/httprouter
-  version: d8ff598a019f2c7bad0980917a588193cf26666e
 - name: github.com/manucorporat/sse
   version: ee05b128a739a0fb76c7ebd3ae4810c1de808d6d
-- name: github.com/manyminds/api2go
-  version: f5e0dba5f9f3c72db99541f3f543c7628c9df296
-  subpackages:
-  - jsonapi
-  - routing
-- name: github.com/metal3d/go-slugify
-  version: 7ac2014b2f23e254684c08d597496681d12c6a8a
+- name: github.com/mitchellh/mapstructure
+  version: ca63d7c062ee3c9f34db231e352b60012b4fd0c1
 - name: github.com/moul/http2curl
   version: b1479103caacaa39319f75e7f57fc545287fca0d
 - name: github.com/parnurzeal/gorequest
-  version: b64673b971a1742b8ba91f228f1c029632d4b686
+  version: 2aea80ce763523ecc6452e61c3727ae9595a5809
 - name: github.com/pkg/errors
   version: 17b591df37844cde689f4d5813e5cea0927d8dd2
 - name: github.com/tidwall/gjson
-  version: 550c66c276592668d8c9532be82f4506e937725e
+  version: b7e578ec725347e107adbdce491274c31d6a23fa
+- name: github.com/tidwall/match
+  version: 173748da739a410c5b0b813b956f89ff94730b4c
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
@@ -47,7 +42,7 @@ imports:
 - name: gopkg.in/go-playground/validator.v8
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/mgo.v2
-  version: 3f83fa5005286a7fe593b055f0d7771a7dce4655
+  version: 01084657862d7b12d3b10ffd0394357abf8f8bc2
   subpackages:
   - bson
   - internal/json

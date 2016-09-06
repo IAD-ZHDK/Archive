@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/256dpi/fire"
+	"github.com/gonfire/fire"
 	"github.com/IAD-ZHDK/madek"
 	"github.com/pkg/errors"
 	"gopkg.in/mgo.v2"

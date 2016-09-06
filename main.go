@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/256dpi/fire"
+	"github.com/gonfire/fire"
 	"github.com/gin-gonic/gin"
 	"github.com/itsjamie/gin-cors"
 	"gopkg.in/mgo.v2"
@@ -21,22 +21,18 @@ func main() {
 
 	router := gin.Default()
 
-	endpoint := fire.NewEndpoint(db)
+	app := fire.New(db, "")
 
 	// TODO: Add authentication and protect resources.
 
-	endpoint.AddResource(&fire.Resource{
+	app.Mount(&fire.Controller{
 		Model: &documentation{},
 		Validator: fire.Combine(
 			madekDataValidator,
 		),
-	})
-
-	endpoint.AddResource(&fire.Resource{
+	}, &fire.Controller{
 		Model: &person{},
-	})
-
-	endpoint.AddResource(&fire.Resource{
+	}, &fire.Controller{
 		Model: &tag{},
 	})
 
@@ -49,7 +45,7 @@ func main() {
 		Credentials:    true,
 	}))
 
-	endpoint.Register("", router)
+	app.Register(router)
 
 	err = router.Run("localhost:8080")
 	if err != nil {
