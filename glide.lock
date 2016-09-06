@@ -1,5 +1,5 @@
 hash: a78e9ee27a1026e6502912def3acc3ecd4cf62b120f56d4c2e6c12be23a85e40
-updated: 2016-09-06T10:53:06.580057861+02:00
+updated: 2016-09-06T11:51:01.891360052+02:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
@@ -13,11 +13,11 @@ imports:
   subpackages:
   - proto
 - name: github.com/gonfire/fire
-  version: f681e4249ef815228d359097df343dc7c4a88fc4
+  version: c167e9a192d594947e5acb5556004eebcb659dc9
 - name: github.com/gonfire/jsonapi
   version: e6f367000a89d5e942834a41a17d1535a51a2c7d
 - name: github.com/IAD-ZHDK/madek
-  version: 1f557fda1ecf445e18caa36bc59fc0802162dd37
+  version: fd1dc0a2f60d571fc2c873cbd4ee13707ae363f8
 - name: github.com/itsjamie/gin-cors
   version: 97b4a9da79331dfa2b6d35f4cdd1e50f5148859c
 - name: github.com/manucorporat/sse

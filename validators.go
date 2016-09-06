@@ -44,9 +44,15 @@ func madekDataValidator(ctx *fire.Context) error {
 		return errors.New("Collection title must be longer than 5 characters.")
 	}
 
-	if len(coll.MetaData.Subtitle) < 50 {
-		return errors.New("Collection subtitle must be longer than 50 characters.")
-	}
+	// TODO: What are the rules here?
+
+	//if len(coll.MetaData.Subtitle) < 50 {
+	//	return errors.New("Collection subtitle must be longer than 50 characters.")
+	//}
+
+	//if len(coll.MetaData.Description) < 200 {
+	//	return errors.New("Collection description must be longer than 200 characters.")
+	//}
 
 	if len(coll.MetaData.Genres) != 1 || coll.MetaData.Genres[0] != "Design" {
 		return errors.New("Collection genre must be 'Design'.")
@@ -56,6 +62,7 @@ func madekDataValidator(ctx *fire.Context) error {
 
 	doc.Title = coll.MetaData.Title
 	doc.Subtitle = coll.MetaData.Subtitle
+	doc.Abstract = coll.MetaData.Description
 
 	doc.PeopleIDs = nil
 	doc.TagIDs = nil
@@ -120,17 +127,6 @@ func madekDataValidator(ctx *fire.Context) error {
 
 		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
 			doc.Documents = append(doc.Documents, _file)
-			continue
-		}
-
-		// TODO: Parse collection description instead.
-		if mediaEntry.FileName == "Abstract.md" {
-			res, err := client.Fetch(mediaEntry.StreamURL)
-			if err != nil {
-				return fire.Fatal(err)
-			}
-
-			doc.Abstract = res
 			continue
 		}
 
