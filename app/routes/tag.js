@@ -4,7 +4,7 @@ import FindByQuery from 'archive-app/mixins/find_by_query';
 
 export default Ember.Route.extend(FindByQuery, {
   model(params) {
-    return new Promise((resolve, reject) => {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       this.findByQuery('tag', {
         slug: params.slug,
       }).then((tag) => {

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import HasManyQuery from 'ember-data-has-many-query';
 
@@ -26,6 +27,6 @@ export default DS.Model.extend(HasManyQuery.ModelMixin, {
     return this.get("tagNames").join(", ");
   }),
   madekUrl: Ember.computed("madekId", function(){
-    return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId')
+    return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId');
   })
 });
