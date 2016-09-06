@@ -4,9 +4,9 @@ export default Ember.Mixin.create({
   transitionWithModel: false,
   setError(failure) {
     if(failure.errors && failure.errors.length > 0) {
-      this.set('error', failure.errors[0].title.capitalize());
+      this.set('error', failure.errors[0].detail || failure.errors[0].title);
     } else {
-      this.set('error', failure.capitalize());
+      this.set('error', failure.toString());
     }
 
     setTimeout(() => {
