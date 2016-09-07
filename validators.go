@@ -2,10 +2,11 @@ package main
 
 import (
 	"os"
+	"regexp"
 	"strings"
 
-	"github.com/gonfire/fire"
 	"github.com/IAD-ZHDK/madek"
+	"github.com/gonfire/fire"
 	"github.com/pkg/errors"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -53,6 +54,11 @@ func madekDataValidator(ctx *fire.Context) error {
 	//if len(coll.MetaData.Description) < 200 {
 	//	return errors.New("Collection description must be longer than 200 characters.")
 	//}
+
+	ok, err := regexp.MatchString(`^\d{4}$`, coll.MetaData.Year)
+	if !ok || err != nil {
+		return errors.New("Invalid year must be like '2016'.")
+	}
 
 	if len(coll.MetaData.Genres) != 1 || coll.MetaData.Genres[0] != "Design" {
 		return errors.New("Collection genre must be 'Design'.")
