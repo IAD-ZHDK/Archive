@@ -10,6 +10,8 @@
     p = each model.tags as |tag|
         = link-to 'tag' tag.slug
           = tag.name
+    p = link-to 'year' model.year
+      = model.year
     .head
       .thumb.cover style="background-image: url({{model.cover.low-res}})" title=model.cover.title
       p = model.subtitle
@@ -22,7 +24,8 @@
       = markdown-to-html model.abstract
     .images
       each model.images as |image|
-        .thumb style="background-image: url({{image.low-res}})" title=image.title
+        a href=image.high-res target='_blank'
+          .thumb style="background-image: url({{image.low-res}})" title=image.title
     h2 Documents
     ul
       each model.documents as |document|

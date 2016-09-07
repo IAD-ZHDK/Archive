@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('documentation', { path: 'd/:slug' });
   this.route('person', { path: 'p/:slug' });
   this.route('tag', { path: 't/:slug' });
+  this.route('year', { path: 'y/:year' });
 
   this.route('submit');
 
