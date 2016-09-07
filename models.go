@@ -17,6 +17,7 @@ type documentation struct {
 	Title     string  `json:"title" valid:"-"`
 	Subtitle  string  `json:"subtitle" valid:"-"`
 	Abstract  string  `json:"abstract" valid:"-"`
+	Year      string  `json:"year" valid:"-" fire:"filterable,sortable"`
 	Cover     *image  `json:"cover" valid:"-"`
 	Images    []image `json:"images" valid:"-"`
 	Videos    []video `json:"videos" valid:"-"`

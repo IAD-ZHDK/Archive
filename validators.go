@@ -63,6 +63,7 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Title = coll.MetaData.Title
 	doc.Subtitle = coll.MetaData.Subtitle
 	doc.Abstract = coll.MetaData.Description
+	doc.Year = coll.MetaData.Year
 
 	doc.PeopleIDs = nil
 	doc.TagIDs = nil
