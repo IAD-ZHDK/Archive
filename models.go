@@ -9,20 +9,20 @@ import (
 
 type documentation struct {
 	fire.Base    `bson:",inline" fire:"documentations"`
-	Slug         string `json:"slug" valid:"-" bson:"slug" fire:"filterable,sortable"`
-	MadekID      string `json:"madek-id" valid:"-" bson:"madek_id"`
-	MadekCoverID string `json:"madek-cover-id" valid:"-" bson:"madek_cover_id"`
-	Published    bool   `json:"published" valid:"-" fire:"filterable"`
+	Slug         string `json:"slug" bson:"slug" fire:"filterable,sortable"`
+	MadekID      string `json:"madek-id" bson:"madek_id"`
+	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
+	Published    bool   `json:"published" fire:"filterable"`
 
-	Title     string  `json:"title" valid:"-"`
-	Subtitle  string  `json:"subtitle" valid:"-"`
-	Abstract  string  `json:"abstract" valid:"-"`
-	Year      string  `json:"year" valid:"-" fire:"filterable,sortable"`
-	Cover     *image  `json:"cover" valid:"-"`
-	Images    []image `json:"images" valid:"-"`
-	Videos    []video `json:"videos" valid:"-"`
-	Documents []file  `json:"documents" valid:"-"`
-	Files     []file  `json:"files" valid:"-"`
+	Title     string  `json:"title"`
+	Subtitle  string  `json:"subtitle"`
+	Abstract  string  `json:"abstract"`
+	Year      string  `json:"year" fire:"filterable,sortable"`
+	Cover     *image  `json:"cover"`
+	Images    []image `json:"images"`
+	Videos    []video `json:"videos"`
+	Documents []file  `json:"documents"`
+	Files     []file  `json:"files"`
 
 	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`
 	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
@@ -56,16 +56,16 @@ type video struct {
 
 type person struct {
 	fire.Base `bson:",inline" fire:"people"`
-	Slug      string `json:"slug" valid:"-" fire:"filterable"`
-	Name      string `json:"name" valid:"-"`
+	Slug      string `json:"slug" fire:"filterable"`
+	Name      string `json:"name"`
 
-	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:people"`
+	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations:people"`
 }
 
 type tag struct {
 	fire.Base `bson:",inline" fire:"tags"`
-	Slug      string `json:"slug" valid:"-" fire:"filterable"`
-	Name      string `json:"name" valid:"-"`
+	Slug      string `json:"slug" fire:"filterable"`
+	Name      string `json:"name"`
 
-	Documentations fire.HasMany `json:"-" valid:"-" bson:"-" fire:"documentations:documentations:tags"`
+	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations:tags"`
 }
