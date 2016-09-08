@@ -12,8 +12,9 @@ unless model.isNew
   h3 Abstract
   = markdown-to-html model.abstract
   h3 Cover
-  a href=model.cover.high-res target="_blank"
-    img height=200 src=model.cover.low-res alt=model.cover.title
+  if model.cover
+    a href=model.cover.high-res target="_blank"
+      img height=200 src=model.cover.low-res alt=model.cover.title
   h3 Videos
   each model.videos as |video|
     video controls=1 poster=video.low-res
