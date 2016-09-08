@@ -5,9 +5,9 @@ import "github.com/gonfire/fire"
 func main() {
 	app := fire.New("mongodb://localhost/archive", "")
 
-	// TODO: Add authentication and protect resources.
+	// TODO: Add basic authentication and protect resources.
 
-	app.EnableCORS("http://localhost:4200")
+	app.EnableDevMode()
 
 	app.Mount(&fire.Controller{
 		Model: &documentation{},
