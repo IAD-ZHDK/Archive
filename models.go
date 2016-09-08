@@ -10,8 +10,8 @@ import (
 type documentation struct {
 	fire.Base    `bson:",inline" fire:"documentations"`
 	Slug         string `json:"slug" valid:"-" bson:"slug" fire:"filterable,sortable"`
-	MadekID      string `json:"madek-id" valid:"required" bson:"madek_id"`
-	MadekCoverID string `json:"madek-cover-id" valid:"required" bson:"madek_cover_id"`
+	MadekID      string `json:"madek-id" valid:"-" bson:"madek_id"`
+	MadekCoverID string `json:"madek-cover-id" valid:"-" bson:"madek_cover_id"`
 	Published    bool   `json:"published" valid:"-" fire:"filterable"`
 
 	Title     string  `json:"title" valid:"-"`

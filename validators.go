@@ -31,6 +31,18 @@ func madekDataValidator(ctx *fire.Context) error {
 	// get model
 	doc := ctx.Model.(*documentation)
 
+	// check madek id
+	if len(doc.MadekID) < 30 {
+		return errors.New("Invalid Madek ID. Did you copy the whole id?")
+	}
+
+	// TODO: Enforce existence of a cover?
+
+	// check madek cover id
+	if doc.MadekCoverID != "" && len(doc.MadekID) < 30 {
+		return errors.New("Invalid Madek Cover ID. Did you copy the whole id?")
+	}
+
 	// compile collection
 	coll, err := client.CompileCollection(doc.MadekID)
 	if err != nil {
