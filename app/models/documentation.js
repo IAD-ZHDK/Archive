@@ -2,6 +2,8 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import HasManyQuery from 'ember-data-has-many-query';
 
+import config from 'archive-app/config/environment';
+
 export default DS.Model.extend(HasManyQuery.ModelMixin, {
   slug: DS.attr('string'),
   madekId: DS.attr('string'),
@@ -15,19 +17,26 @@ export default DS.Model.extend(HasManyQuery.ModelMixin, {
   videos: DS.attr(),
   images: DS.attr(),
   documents: DS.attr(),
+  websites: DS.attr(),
   files: DS.attr(),
   people: DS.hasMany('person'),
   tags: DS.hasMany('tag'),
 
-  peopleNames: Ember.computed.mapBy("people", "name"),
-  tagNames: Ember.computed.mapBy("tags", "name"),
-  peopleList: Ember.computed("peopleNames", function(){
-    return this.get("peopleNames").join(", ");
+  peopleNames: Ember.computed.mapBy('people', 'name'),
+  tagNames: Ember.computed.mapBy('tags', 'name'),
+  peopleList: Ember.computed('peopleNames', function(){
+    return this.get('peopleNames').join(', ');
   }),
-  tagsList: Ember.computed("tagNames", function(){
-    return this.get("tagNames").join(", ");
+  tagsList: Ember.computed('tagNames', function(){
+    return this.get('tagNames').join(', ');
   }),
-  madekUrl: Ember.computed("madekId", function(){
-    return "https://medienarchiv.zhdk.ch/sets/" + this.get('madekId');
+  madekUrl: Ember.computed('madekId', function(){
+    return 'https://medienarchiv.zhdk.ch/sets/' + this.get('madekId');
+  }),
+  websitesWithLinks: Ember.computed.map('websites', function(website, i){
+    return {
+      title: website.title,
+      link: config.apiBaseURL + '/web/' + this.get('id') + '/' + i.toString() + '/index.html'
+    }
   })
 });

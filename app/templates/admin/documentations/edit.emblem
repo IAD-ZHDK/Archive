@@ -29,6 +29,11 @@ unless model.isNew
     each model.documents as |document|
       li: a href=document.stream target="_blank"
         = document.title
+  h3 Websites
+  ul
+    each model.websitesWithLinks as |website|
+      li: a href=website.link target="_blank"
+        = website.title
   h3 Files
   ul
     each model.files as |file|
