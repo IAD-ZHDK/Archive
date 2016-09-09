@@ -26,6 +26,9 @@
       each model.images as |image|
         a href=image.high-res target='_blank'
           .thumb style="background-image: url({{image.low-res}})" title=image.title
+    .websites
+      each model.websitesWithLinks as |website|
+        iframe src=website.link width=800 height=400 frameborder=0 style="border: 1px solid black"
     h2 Documents
     ul
       each model.documents as |document|
