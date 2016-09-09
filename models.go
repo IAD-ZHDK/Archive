@@ -22,6 +22,7 @@ type documentation struct {
 	Images    []image `json:"images"`
 	Videos    []video `json:"videos"`
 	Documents []file  `json:"documents"`
+	Websites  []file  `json:"websites"`
 	Files     []file  `json:"files"`
 
 	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`

@@ -1,12 +1,12 @@
 hash: 706f76155b0c35577a93bc8e45efa968bfd6307c31083161c5c946838a45c5b0
-updated: 2016-09-08T17:03:23.552385456+02:00
+updated: 2016-09-08T18:00:22.516153723+02:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
 - name: github.com/dgrijalva/jwt-go
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
 - name: github.com/gonfire/fire
-  version: 288230057e01de047ee8ed89306330132073073b
+  version: 845df570cfbc5eb3f269dbd0e6dc156a8585e140
 - name: github.com/gonfire/jsonapi
   version: 7338c724e88ac200ba48f92e71d8c39552ffd005
 - name: github.com/IAD-ZHDK/madek
@@ -37,7 +37,7 @@ imports:
 - name: github.com/pkg/errors
   version: 17b591df37844cde689f4d5813e5cea0927d8dd2
 - name: github.com/tidwall/gjson
-  version: b7e578ec725347e107adbdce491274c31d6a23fa
+  version: b39aa6075f41cb152f56375421e38899d5701dff
 - name: github.com/tidwall/match
   version: 173748da739a410c5b0b813b956f89ff94730b4c
 - name: github.com/valyala/fasttemplate

@@ -97,6 +97,7 @@ func madekDataValidator(ctx *fire.Context) error {
 	doc.Videos = nil
 	doc.Images = nil
 	doc.Documents = nil
+	doc.Websites = nil
 	doc.Files = nil
 
 	// add authors
@@ -163,6 +164,12 @@ func madekDataValidator(ctx *fire.Context) error {
 		// add documents and continue
 		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
 			doc.Documents = append(doc.Documents, _file)
+			continue
+		}
+
+		// add websites and continue
+		if strings.HasSuffix(mediaEntry.FileName, ".web.zip") {
+			doc.Websites = append(doc.Websites, _file)
 			continue
 		}
 
