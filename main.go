@@ -22,6 +22,9 @@ func main() {
 
 	// TODO: Add basic authentication and protect resources.
 
+	// TODO: Fix X-Frame options.
+	app.DisableCommonSecurity()
+
 	app.EnableDevMode()
 
 	app.Mount(&fire.Controller{
