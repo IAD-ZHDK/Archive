@@ -1,14 +1,22 @@
 hash: 706f76155b0c35577a93bc8e45efa968bfd6307c31083161c5c946838a45c5b0
-updated: 2016-09-08T18:00:22.516153723+02:00
+updated: 2016-09-13T14:20:22.059081409+02:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
 - name: github.com/dgrijalva/jwt-go
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
+- name: github.com/fatih/structs
+  version: dc3312cb1a4513a366c4c9e622ad55c32df12ed3
 - name: github.com/gonfire/fire
-  version: 845df570cfbc5eb3f269dbd0e6dc156a8585e140
+  version: a74326c68377de47167c6eaed8198107135b3e1c
+  subpackages:
+  - components
+  - jsonapi
+  - model
 - name: github.com/gonfire/jsonapi
-  version: 7338c724e88ac200ba48f92e71d8c39552ffd005
+  version: a22393bcaa396a3459f3f8db8d0359c1965b4958
+  subpackages:
+  - adapter
 - name: github.com/IAD-ZHDK/madek
   version: f744a12372f25436e885cf8834e35196326f0b61
 - name: github.com/labstack/echo
@@ -37,7 +45,7 @@ imports:
 - name: github.com/pkg/errors
   version: 17b591df37844cde689f4d5813e5cea0927d8dd2
 - name: github.com/tidwall/gjson
-  version: b39aa6075f41cb152f56375421e38899d5701dff
+  version: 2dec1c4e7be3fff111b388536cf94ae23c38add7
 - name: github.com/tidwall/match
   version: 173748da739a410c5b0b813b956f89ff94730b4c
 - name: github.com/valyala/fasttemplate

@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/IAD-ZHDK/madek"
-	"github.com/gonfire/fire"
+	"github.com/gonfire/fire/jsonapi"
 	"github.com/pkg/errors"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -22,9 +22,9 @@ func init() {
 	)
 }
 
-func madekDataValidator(ctx *fire.Context) error {
+func madekDataValidator(ctx *jsonapi.Context) error {
 	// only run on create and update
-	if ctx.Action != fire.Create && ctx.Action != fire.Update {
+	if ctx.Action != jsonapi.Create && ctx.Action != jsonapi.Update {
 		return nil
 	}
 
@@ -52,7 +52,7 @@ func madekDataValidator(ctx *fire.Context) error {
 		case madek.ErrAccessForbidden:
 			return errors.New("Collection is not publicly accessible. Did you set the necessary permissions?")
 		default:
-			return fire.Fatal(err)
+			return jsonapi.Fatal(err)
 		}
 	}
 

@@ -3,12 +3,12 @@ package main
 import (
 	"errors"
 
-	"github.com/gonfire/fire"
+	"github.com/gonfire/fire/model"
 	"gopkg.in/mgo.v2/bson"
 )
 
 type documentation struct {
-	fire.Base    `bson:",inline" fire:"documentations"`
+	model.Base   `json:"-" bson:",inline" fire:"documentations"`
 	Slug         string `json:"slug" bson:"slug" fire:"filterable,sortable"`
 	MadekID      string `json:"madek-id" bson:"madek_id"`
 	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
@@ -56,17 +56,17 @@ type video struct {
 }
 
 type person struct {
-	fire.Base `bson:",inline" fire:"people"`
-	Slug      string `json:"slug" fire:"filterable"`
-	Name      string `json:"name"`
+	model.Base `json:"-" bson:",inline" fire:"people"`
+	Slug       string `json:"slug" fire:"filterable"`
+	Name       string `json:"name"`
 
-	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations:people"`
+	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:people"`
 }
 
 type tag struct {
-	fire.Base `bson:",inline" fire:"tags"`
-	Slug      string `json:"slug" fire:"filterable"`
-	Name      string `json:"name"`
+	model.Base `json:"-" bson:",inline" fire:"tags"`
+	Slug       string `json:"slug" fire:"filterable"`
+	Name       string `json:"name"`
 
-	Documentations fire.HasMany `json:"-" bson:"-" fire:"documentations:documentations:tags"`
+	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:tags"`
 }
