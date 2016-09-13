@@ -13,6 +13,9 @@
       .field
         label Madek Cover
         = input value=model.madekCoverId type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
+      .field
+        label Password
+        = input value=session.password type="password" placeholder="****"
       if error
         .ui.error.message
           .header Error
