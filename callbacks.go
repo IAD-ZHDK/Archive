@@ -112,7 +112,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 	// add authors
 	for _, author := range coll.MetaData.Authors {
 		var p person
-		err := ctx.DB.C("people").Find(bson.M{
+		err := ctx.Store.DB().C("people").Find(bson.M{
 			"name": author,
 		}).One(&p)
 		if err == mgo.ErrNotFound {
@@ -128,7 +128,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 	// add tags
 	for _, keyword := range coll.MetaData.Keywords {
 		var t tag
-		err := ctx.DB.C("tags").Find(bson.M{
+		err := ctx.Store.DB().C("tags").Find(bson.M{
 			"name": keyword,
 		}).One(&t)
 		if err == mgo.ErrNotFound {

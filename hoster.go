@@ -17,10 +17,10 @@ import (
 )
 
 type hoster struct {
-	store model.Store
+	store *model.Store
 }
 
-func newHoster(store model.Store) *hoster {
+func newHoster(store *model.Store) *hoster {
 	return &hoster{
 		store: store,
 	}
