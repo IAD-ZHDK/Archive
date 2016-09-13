@@ -2,7 +2,6 @@
   .documentation
     = link-to 'index' | Home
     = link-to 'submit' | Submit
-    = link-to 'admin' | Admin
     h1 = model.title
     p = each model.people as |person|
       = link-to 'person' person.slug
