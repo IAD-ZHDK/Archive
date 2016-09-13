@@ -107,7 +107,7 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 			"name": author,
 		}).One(&p)
 		if err == mgo.ErrNotFound {
-			continue
+			return errors.New("Person " + author + " has not yet been created.")
 		}
 		if err != nil {
 			return err
@@ -123,7 +123,7 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 			"name": keyword,
 		}).One(&t)
 		if err == mgo.ErrNotFound {
-			continue
+			return errors.New("Tag " + keyword + " has not yet been created.")
 		}
 		if err != nil {
 			return err
@@ -155,7 +155,7 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 		}
 
 		// prepare basic file
-		_file := file{
+		fl := file{
 			Title:    mediaEntry.MetaData.Title,
 			Stream:   mediaEntry.StreamURL,
 			Download: mediaEntry.DownloadURL,
@@ -163,13 +163,13 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 
 		// add documents and continue
 		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
-			doc.Documents = append(doc.Documents, _file)
+			doc.Documents = append(doc.Documents, fl)
 			continue
 		}
 
 		// add websites and continue
 		if strings.HasSuffix(mediaEntry.FileName, ".web.zip") {
-			doc.Websites = append(doc.Websites, _file)
+			doc.Websites = append(doc.Websites, fl)
 			continue
 		}
 
@@ -198,32 +198,32 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 
 		// add ordinary file and continue when previews are missing
 		if lowRes == nil || highRes == nil {
-			doc.Files = append(doc.Files, _file)
+			doc.Files = append(doc.Files, fl)
 			continue
 		}
 
 		// prepare image
-		_image := image{
-			file:    _file,
+		img := image{
+			file:    fl,
 			LowRes:  lowRes.URL,
 			HighRes: highRes.URL,
 		}
 
 		// add cover if ids match
 		if mediaEntry.ID == doc.MadekCoverID {
-			doc.Cover = &_image
+			doc.Cover = &img
 			continue
 		}
 
 		// add image if video sources are missing
 		if mp4Source == nil || webmSource == nil {
-			doc.Images = append(doc.Images, _image)
+			doc.Images = append(doc.Images, img)
 			continue
 		}
 
 		// add video
 		doc.Videos = append(doc.Videos, video{
-			image:      _image,
+			image:      img,
 			MP4Source:  mp4Source.URL,
 			WebMSource: webmSource.URL,
 		})
