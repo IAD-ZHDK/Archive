@@ -9,7 +9,7 @@ import (
 
 type documentation struct {
 	model.Base   `json:"-" bson:",inline" fire:"documentations"`
-	Slug         string `json:"slug" bson:"slug" fire:"filterable,sortable"`
+	Slug         string `json:"slug" valid:"length(5|99)" bson:"slug" fire:"filterable,sortable"`
 	MadekID      string `json:"madek-id" bson:"madek_id"`
 	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
 	Published    bool   `json:"published" fire:"filterable"`
@@ -57,16 +57,16 @@ type video struct {
 
 type person struct {
 	model.Base `json:"-" bson:",inline" fire:"people"`
-	Slug       string `json:"slug" fire:"filterable"`
-	Name       string `json:"name"`
+	Slug       string `json:"slug" valid:"length(5|99)" fire:"filterable"`
+	Name       string `json:"name" valid:"length(5|99)"`
 
 	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:people"`
 }
 
 type tag struct {
 	model.Base `json:"-" bson:",inline" fire:"tags"`
-	Slug       string `json:"slug" fire:"filterable"`
-	Name       string `json:"name"`
+	Slug       string `json:"slug" valid:"length(5|99)" fire:"filterable"`
+	Name       string `json:"name" valid:"length(5|99)"`
 
 	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:tags"`
 }
