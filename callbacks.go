@@ -47,6 +47,11 @@ func documentationValidator(ctx *jsonapi.Context) error {
 		return errors.New("Invalid Madek Cover ID. Did you copy the whole id?")
 	}
 
+	// force unpublished on create
+	if ctx.Action == jsonapi.Create {
+		doc.Published = false
+	}
+
 	// compile collection
 	coll, err := client.CompileCollection(doc.MadekID)
 	if err != nil {
