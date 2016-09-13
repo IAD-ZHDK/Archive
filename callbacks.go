@@ -30,6 +30,13 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 	// get model
 	doc := ctx.Model.(*documentation)
 
+	// check slug on publishing
+	if doc.Published {
+		if len(doc.Slug) < 5 {
+			return errors.New("Slug must be longer than 5 characters.")
+		}
+	}
+
 	// check madek id
 	if len(doc.MadekID) < 30 {
 		return errors.New("Invalid Madek ID. Did you copy the whole id?")
