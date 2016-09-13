@@ -5,5 +5,9 @@
     = link-to 'admin.documentations' class='item' | Documentations
     = link-to 'admin.people' class='item' | People
     = link-to 'admin.tags' class='item' | Tags
+    .item
+      .ui.icon.input
+        = input value=session.password type="password" placeholder="****"
+        i class="key link icon"
     = link-to 'index' class='item right' | Home
   = outlet
