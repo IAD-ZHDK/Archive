@@ -22,9 +22,7 @@ func main() {
 		Model:      &documentation{},
 		Store:      store,
 		Authorizer: passwordAuthorizer(true),
-		Validator: jsonapi.Combine(
-			documentationValidator,
-		),
+		Validator:  documentationValidator,
 	}, &jsonapi.Controller{
 		Model:      &person{},
 		Store:      store,
