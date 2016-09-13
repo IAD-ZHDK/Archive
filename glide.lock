@@ -1,5 +1,5 @@
 hash: 706f76155b0c35577a93bc8e45efa968bfd6307c31083161c5c946838a45c5b0
-updated: 2016-09-13T14:20:22.059081409+02:00
+updated: 2016-09-13T14:41:34.730498276+02:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 7664702784775e51966f0885f5cd27435916517b
@@ -8,7 +8,7 @@ imports:
 - name: github.com/fatih/structs
   version: dc3312cb1a4513a366c4c9e622ad55c32df12ed3
 - name: github.com/gonfire/fire
-  version: a74326c68377de47167c6eaed8198107135b3e1c
+  version: d47e72af4f4ce7987f3e81be6322d2400a7f5870
   subpackages:
   - components
   - jsonapi

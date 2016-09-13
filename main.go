@@ -42,15 +42,8 @@ func main() {
 	// mount inspector
 	app.Mount(fire.DefaultInspector(app))
 
-	// create protector
-	protector := components.DefaultProtector()
-
-	// tweak configuration
-	// TODO: Set proper Origin.
-	protector.XFrameOptions = ""
-
 	// mount protector
-	app.Mount(protector)
+	app.Mount(components.DefaultProtector())
 
 	// start app
 	app.Start("localhost:8080")
