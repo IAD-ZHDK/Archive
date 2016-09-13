@@ -21,7 +21,7 @@ var client = madek.NewClient(
 var studentPassword = os.Getenv("STUDENT_PASSWORD")
 var adminPassword = os.Getenv("ADMIN_PASSWORD")
 
-func madekDataValidator(ctx *jsonapi.Context) error {
+func documentationValidator(ctx *jsonapi.Context) error {
 	// only run on create and update
 	if ctx.Action != jsonapi.Create && ctx.Action != jsonapi.Update {
 		return nil
@@ -31,10 +31,8 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 	doc := ctx.Model.(*documentation)
 
 	// check slug on publishing
-	if doc.Published {
-		if len(doc.Slug) < 5 {
-			return errors.New("Slug must be longer than 5 characters.")
-		}
+	if doc.Published && len(doc.Slug) < 5 {
+		return errors.New("Slug must be at least 5 characters.")
 	}
 
 	// check madek id
@@ -260,4 +258,21 @@ func passwordAuthorizer(allowStudentsOnCreate bool) jsonapi.Callback {
 
 		return errors.New("Invalid password.")
 	}
+}
+
+func slugAndNameValidator(ctx *jsonapi.Context) error {
+	// only validate on create and update
+	if ctx.Action != jsonapi.Create && ctx.Action != jsonapi.Update {
+		return nil
+	}
+
+	if len(ctx.Model.Get("slug").(string)) < 5 {
+		return errors.New("Slug must be at least 5 characters.")
+	}
+
+	if len(ctx.Model.Get("name").(string)) < 5 {
+		return errors.New("Name must be at least 5 characters.")
+	}
+
+	return nil
 }

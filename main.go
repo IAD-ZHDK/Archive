@@ -22,16 +22,18 @@ func main() {
 		Pool:       pool,
 		Authorizer: passwordAuthorizer(true),
 		Validator: jsonapi.Combine(
-			madekDataValidator,
+			documentationValidator,
 		),
 	}, &jsonapi.Controller{
 		Model:      &person{},
 		Pool:       pool,
 		Authorizer: passwordAuthorizer(false),
+		Validator:  slugAndNameValidator,
 	}, &jsonapi.Controller{
 		Model:      &tag{},
 		Pool:       pool,
 		Authorizer: passwordAuthorizer(false),
+		Validator:  slugAndNameValidator,
 	})
 
 	// mount group

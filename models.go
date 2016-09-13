@@ -1,8 +1,6 @@
 package main
 
 import (
-	"errors"
-
 	"github.com/gonfire/fire/model"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -29,14 +27,6 @@ type documentation struct {
 	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
 }
 
-func (d *documentation) Validate(fresh bool) error {
-	if d.Published && d.Slug == "" {
-		return errors.New("Missing slug for published documentation")
-	}
-
-	return d.Base.Validate(fresh)
-}
-
 type file struct {
 	Title    string `json:"title"`
 	Stream   string `json:"stream"`
@@ -57,16 +47,16 @@ type video struct {
 
 type person struct {
 	model.Base `json:"-" bson:",inline" fire:"people"`
-	Slug       string `json:"slug" valid:"length(5|99)" fire:"filterable"`
-	Name       string `json:"name" valid:"length(5|99)"`
+	Slug       string `json:"slug" fire:"filterable"`
+	Name       string `json:"name"`
 
 	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:people"`
 }
 
 type tag struct {
 	model.Base `json:"-" bson:",inline" fire:"tags"`
-	Slug       string `json:"slug" valid:"length(5|99)" fire:"filterable"`
-	Name       string `json:"name" valid:"length(5|99)"`
+	Slug       string `json:"slug" fire:"filterable"`
+	Name       string `json:"name" `
 
 	Documentations model.HasMany `json:"-" bson:"-" fire:"documentations:documentations:tags"`
 }
