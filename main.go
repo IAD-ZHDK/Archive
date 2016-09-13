@@ -4,11 +4,12 @@ import (
 	"github.com/gonfire/fire"
 	"github.com/gonfire/fire/components"
 	"github.com/gonfire/fire/jsonapi"
+	"github.com/gonfire/fire/model"
 )
 
 func main() {
-	// create pool
-	pool := fire.NewPool("mongodb://localhost/archive")
+	// create store
+	store := model.CreateStore("mongodb://localhost/archive")
 
 	// create app
 	app := fire.New()
@@ -19,19 +20,19 @@ func main() {
 	// add controllers
 	group.Add(&jsonapi.Controller{
 		Model:      &documentation{},
-		Pool:       pool,
+		Store:      store,
 		Authorizer: passwordAuthorizer(true),
 		Validator: jsonapi.Combine(
 			documentationValidator,
 		),
 	}, &jsonapi.Controller{
 		Model:      &person{},
-		Pool:       pool,
+		Store:      store,
 		Authorizer: passwordAuthorizer(false),
 		Validator:  slugAndNameValidator,
 	}, &jsonapi.Controller{
 		Model:      &tag{},
-		Pool:       pool,
+		Store:      store,
 		Authorizer: passwordAuthorizer(false),
 		Validator:  slugAndNameValidator,
 	})
@@ -40,7 +41,7 @@ func main() {
 	app.Mount(group)
 
 	// mount hoster
-	app.Mount(newHoster(pool))
+	app.Mount(newHoster(store))
 
 	// mount inspector
 	app.Mount(fire.DefaultInspector(app))

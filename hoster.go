@@ -11,17 +11,18 @@ import (
 	"strconv"
 
 	"github.com/gonfire/fire"
+	"github.com/gonfire/fire/model"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 )
 
 type hoster struct {
-	pool fire.Pool
+	store model.Store
 }
 
-func newHoster(pool fire.Pool) *hoster {
+func newHoster(store model.Store) *hoster {
 	return &hoster{
-		pool: pool,
+		store: store,
 	}
 }
 
@@ -44,18 +45,15 @@ func (h *hoster) serveFile(ctx echo.Context) error {
 	// get id
 	id := bson.ObjectIdHex(ctx.Param("id"))
 
-	// get connection from pool
-	sess, db, err := h.pool.Get()
-	if err != nil {
-		return err
-	}
+	// copy store
+	store := h.store.Copy()
 
-	// ensure session gets closed
-	defer sess.Close()
+	// ensure stores gets closed
+	defer store.Close()
 
 	// get documentation
 	var doc documentation
-	err = db.C("documentations").FindId(id).One(&doc)
+	err := store.DB().C("documentations").FindId(id).One(&doc)
 	if err != nil {
 		return err
 	}
