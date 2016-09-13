@@ -9,7 +9,7 @@ import (
 
 type documentation struct {
 	model.Base   `json:"-" bson:",inline" fire:"documentations"`
-	Slug         string `json:"slug" valid:"length(5|99)" bson:"slug" fire:"filterable,sortable"`
+	Slug         string `json:"slug" bson:"slug" fire:"filterable,sortable"`
 	MadekID      string `json:"madek-id" bson:"madek_id"`
 	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
 	Published    bool   `json:"published" fire:"filterable"`
