@@ -12,15 +12,14 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-var client *madek.Client
+var client = madek.NewClient(
+	os.Getenv("MADEK_ADDRESS"),
+	os.Getenv("MADEK_USERNAME"),
+	os.Getenv("MADEK_PASSWORD"),
+)
 
-func init() {
-	client = madek.NewClient(
-		os.Getenv("MADEK_ADDRESS"),
-		os.Getenv("MADEK_USERNAME"),
-		os.Getenv("MADEK_PASSWORD"),
-	)
-}
+var studentPassword = os.Getenv("STUDENT_PASSWORD")
+var adminPassword = os.Getenv("ADMIN_PASSWORD")
 
 func madekDataValidator(ctx *jsonapi.Context) error {
 	// only run on create and update
@@ -230,4 +229,28 @@ func madekDataValidator(ctx *jsonapi.Context) error {
 	}
 
 	return nil
+}
+
+func passwordAuthorizer(allowStudentsOnCreate bool) jsonapi.Callback {
+	return func(ctx *jsonapi.Context) error {
+		// only require authorization for writes
+		if !ctx.Action.Write() {
+			return nil
+		}
+
+		// get password from header
+		pw := ctx.Echo.Request().Header().Get("Authorization")
+
+		// allow creating stuff as student or admin
+		if ctx.Action == jsonapi.Create && allowStudentsOnCreate && pw == studentPassword {
+			return nil
+		}
+
+		// check password
+		if pw == adminPassword {
+			return nil
+		}
+
+		return errors.New("Invalid password.")
+	}
 }

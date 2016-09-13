@@ -13,24 +13,25 @@ func main() {
 	// create app
 	app := fire.New()
 
-	// TODO: Add basic authentication and protect resources.
-
 	// create group
 	group := jsonapi.New("api")
 
 	// add controllers
 	group.Add(&jsonapi.Controller{
-		Model: &documentation{},
-		Pool:  pool,
+		Model:      &documentation{},
+		Pool:       pool,
+		Authorizer: passwordAuthorizer(true),
 		Validator: jsonapi.Combine(
 			madekDataValidator,
 		),
 	}, &jsonapi.Controller{
-		Model: &person{},
-		Pool:  pool,
+		Model:      &person{},
+		Pool:       pool,
+		Authorizer: passwordAuthorizer(false),
 	}, &jsonapi.Controller{
-		Model: &tag{},
-		Pool:  pool,
+		Model:      &tag{},
+		Pool:       pool,
+		Authorizer: passwordAuthorizer(false),
 	})
 
 	// mount group
