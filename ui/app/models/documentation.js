@@ -37,6 +37,6 @@ export default DS.Model.extend(HasManyQuery.ModelMixin, {
     return {
       title: website.title,
       link: config.apiBaseURL + '/web/' + this.get('id') + '/' + i.toString() + '/index.html'
-    }
+    };
   })
 });
