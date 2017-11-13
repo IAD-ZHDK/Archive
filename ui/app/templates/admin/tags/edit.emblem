@@ -1,0 +1,3 @@
+h1 Edit Tag
+
+= partial 'admin/tags/form'

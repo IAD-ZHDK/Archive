@@ -1,0 +1,55 @@
+// overide all elements to have new font
+.site, .site h1, .site h2, .site h3, .site h4, .site h5, .site p, .site label
+  font-family: 'NeueHaasGroteskTextW04-65Md', 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  line-height: 1.5
+  font-size: 16px
+  font-weight: normal !important
+
+.site a
+  color: black
+  text-decoration: underline
+  &:hover
+    text-decoration: none
+
+.site
+  max-width: 1000px
+  margin: 0 auto
+  padding: 50px
+  h1
+    font-size: 48px
+  h2
+    font-size: 36px
+  h3
+    font-size: 24px
+
+.documentation
+  .head
+    overflow: hidden
+    .thumb
+      float: left
+      margin-top: 8px
+      margin-right: 25px
+    p
+      font-size: 36px
+  .videos, .abstract, .images
+    margin: 50px 0
+  .images
+    overflow: hidden
+    .thumb
+      display: block
+      float: left
+      margin-right: 5px
+      margin-bottom: 5px
+
+.thumb
+  width: 20vw
+  height: 20vw
+  max-width: 200px
+  max-height: 200px
+  background: no-repeat center center
+  background-size: cover
+  &.cover
+    width: 40vw
+    height: 40vw
+    max-width: 400px
+    max-height: 400px

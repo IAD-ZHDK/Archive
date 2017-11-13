@@ -1,0 +1,22 @@
+.ui.form.error class=formClass
+  .field
+    label Slug
+    = input value=model.slug type="text" placeholder="physical-computing-hs16"
+  .field
+    label Madek ID
+    = input value=model.madekId type="text" placeholder="82108639-c4a6-412d-b347-341fe5284caa"
+  .field
+    label Madek Cover ID
+    = input value=model.madekCoverId type="text" placeholder="c39b6dfb-f51f-4bca-9fd0-534462565076"
+  .field
+    label Settings
+    = ui-checkbox class="toggle" label="Published" checked=model.published onChange=(action (mut model.published))
+  if error
+    .ui.error.message
+      .header Error
+      p = error
+  if model.isNew
+    button.ui.positive.button{action 'create'} Create Documentation
+  else
+    button.ui.positive.button{action 'update'} Update Documentation
+    button.ui.negative.button{action 'delete'} Delete Documentation

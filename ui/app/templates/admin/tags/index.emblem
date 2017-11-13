@@ -1,0 +1,20 @@
+h1 People
+
+= link-to 'admin.tags.new' class="ui primary labeled icon button"
+  i.add.icon
+  span New Tag
+
+table.ui.table
+  thead
+    tr
+      th Name
+      th Slug
+  tbody
+    each model as |p|
+      tr
+        td = link-to 'admin.tags.edit' p
+          strong = p.name
+        td = p.slug
+    else
+      tr
+        td No tags found

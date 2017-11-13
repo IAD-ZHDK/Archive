@@ -1,0 +1,16 @@
+.ui.form.error
+  .field
+    label Slug
+    = input value=model.slug type="text" placeholder="embodied-interaction"
+  .field
+    label Name
+    = input value=model.name type="text" placeholder="Embodied Interaction"
+  if error
+    .ui.error.message
+      .header Error
+      p = error
+  if model.isNew
+    button.ui.positive.button{action 'create'} Create Tag
+  else
+    button.ui.positive.button{action 'update'} Update Tag
+    button.ui.negative.button{action 'delete'} Delete Tag
