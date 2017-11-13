@@ -1,12 +1,13 @@
-PKGS=$(shell glide nv)
-
-all: fmt vet lint
+all: fmt vet lint test
 
 vet:
-	go vet $(PKGS)
+	go vet ./...
 
 fmt:
-	go fmt $(PKGS)
+	go fmt ./...
 
 lint:
-	golint $(PKGS)
+	golint $(shell glide nv)
+
+test:
+	go test ./...

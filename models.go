@@ -34,13 +34,13 @@ type File struct {
 }
 
 type Image struct {
-	File           `json:",inline" bson:",inline"`
+	File    `json:",inline" bson:",inline"`
 	LowRes  string `json:"low-res" bson:"low_res"`
 	HighRes string `json:"high-res" bson:"high_res"`
 }
 
 type video struct {
-	Image             `json:",inline" bson:",inline"`
+	Image      `json:",inline" bson:",inline"`
 	MP4Source  string `json:"mp4-source" bson:"mp4_source"`
 	WebMSource string `json:"webm-source" bson:"webm_source"`
 }
