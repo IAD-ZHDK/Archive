@@ -164,7 +164,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 		}
 
 		// prepare basic file
-		fl := file{
+		fl := File{
 			Title:    mediaEntry.MetaData.Title,
 			Stream:   mediaEntry.StreamURL,
 			Download: mediaEntry.DownloadURL,
@@ -212,8 +212,8 @@ func documentationValidator(ctx *jsonapi.Context) error {
 		}
 
 		// prepare image
-		img := image{
-			file:    fl,
+		img := Image{
+			File:    fl,
 			LowRes:  lowRes.URL,
 			HighRes: highRes.URL,
 		}
@@ -232,7 +232,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 
 		// add video
 		doc.Videos = append(doc.Videos, video{
-			image:      img,
+			Image:      img,
 			MP4Source:  mp4Source.URL,
 			WebMSource: webmSource.URL,
 		})

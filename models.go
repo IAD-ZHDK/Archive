@@ -16,31 +16,31 @@ type documentation struct {
 	Subtitle  string  `json:"subtitle"`
 	Abstract  string  `json:"abstract"`
 	Year      string  `json:"year" fire:"filterable,sortable"`
-	Cover     *image  `json:"cover"`
-	Images    []image `json:"images"`
+	Cover     *Image  `json:"cover"`
+	Images    []Image `json:"images"`
 	Videos    []video `json:"videos"`
-	Documents []file  `json:"documents"`
-	Websites  []file  `json:"websites"`
-	Files     []file  `json:"files"`
+	Documents []File  `json:"documents"`
+	Websites  []File  `json:"websites"`
+	Files     []File  `json:"files"`
 
 	TagIDs    []bson.ObjectId `json:"-" bson:"tag_ids" fire:"tags:tags"`
 	PeopleIDs []bson.ObjectId `json:"-" bson:"people_ids" fire:"people:people"`
 }
 
-type file struct {
+type File struct {
 	Title    string `json:"title"`
 	Stream   string `json:"stream"`
 	Download string `json:"download"`
 }
 
-type image struct {
-	file    `json:",inline" bson:",inline"`
+type Image struct {
+	File           `json:",inline" bson:",inline"`
 	LowRes  string `json:"low-res" bson:"low_res"`
 	HighRes string `json:"high-res" bson:"high_res"`
 }
 
 type video struct {
-	image      `json:",inline" bson:",inline"`
+	Image             `json:",inline" bson:",inline"`
 	MP4Source  string `json:"mp4-source" bson:"mp4_source"`
 	WebMSource string `json:"webm-source" bson:"webm_source"`
 }

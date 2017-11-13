@@ -1,4 +1,4 @@
-package: github.com/IAD-ZHDK/archive-api
+package: github.com/IAD-ZHDK/Archive
 import:
 - package: github.com/gonfire/fire
 - package: gopkg.in/mgo.v2
