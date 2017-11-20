@@ -14,6 +14,10 @@ Router.map(function() {
 
   this.route('submit');
 
+  this.route('auth', function(){
+    this.route('login');
+  });
+
   this.route('admin', function(){
     this.route('login');
 
