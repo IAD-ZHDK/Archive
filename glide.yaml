@@ -1,7 +1,7 @@
 package: github.com/IAD-ZHDK/Archive
 import:
-- package: github.com/gonfire/fire
+- package: github.com/256dpi/fire
+  version: ^0.8.5
 - package: gopkg.in/mgo.v2
 - package: github.com/IAD-ZHDK/madek
-- package: github.com/pkg/errors
-  version: ^0.7.1
+  version: ^0.1.0

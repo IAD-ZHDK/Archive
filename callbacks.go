@@ -4,10 +4,10 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"errors"
 
+	"github.com/256dpi/fire"
 	"github.com/IAD-ZHDK/madek"
-	"github.com/gonfire/fire/jsonapi"
-	"github.com/pkg/errors"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -18,56 +18,53 @@ var client = madek.NewClient(
 	os.Getenv("MADEK_PASSWORD"),
 )
 
-var studentPassword = os.Getenv("STUDENT_PASSWORD")
-var adminPassword = os.Getenv("ADMIN_PASSWORD")
-
-func documentationValidator(ctx *jsonapi.Context) error {
+func documentationValidator(ctx *fire.Context) error {
 	// only run on create and update
-	if ctx.Action != jsonapi.Create && ctx.Action != jsonapi.Update {
+	if ctx.Action != fire.Create && ctx.Action != fire.Update {
 		return nil
 	}
 
 	// get model
-	doc := ctx.Model.(*documentation)
+	doc := ctx.Model.(*Documentation)
 
 	// check slug on publishing
 	if doc.Published && len(doc.Slug) < 5 {
-		return errors.New("Slug must be at least 5 characters.")
+		return errors.New("slug must be at least 5 characters")
 	}
 
 	// check madek id
 	if len(doc.MadekID) < 30 {
-		return errors.New("Invalid Madek ID. Did you copy the whole id?")
+		return errors.New("invalid Madek ID")
 	}
 
 	// TODO: Enforce existence of a cover?
 
 	// check madek cover id
 	if doc.MadekCoverID != "" && len(doc.MadekID) < 30 {
-		return errors.New("Invalid Madek Cover ID. Did you copy the whole id?")
+		return errors.New("invalid Madek Cover ID")
 	}
 
 	// force unpublished on create
-	if ctx.Action == jsonapi.Create {
+	if ctx.Action == fire.Create {
 		doc.Published = false
 	}
 
 	// compile collection
 	coll, err := client.CompileCollection(doc.MadekID)
 	if err != nil {
-		switch errors.Cause(err) {
+		switch err {
 		case madek.ErrNotFound:
-			return errors.New("Collection cannot be found. Did you pass the right id?")
+			return errors.New("collection cannot be found")
 		case madek.ErrAccessForbidden:
-			return errors.New("Collection is not publicly accessible. Did you set the necessary permissions?")
+			return errors.New("collection is not publicly accessible")
 		default:
-			return jsonapi.Fatal(err)
+			return fire.Fatal(err)
 		}
 	}
 
 	// validate title
 	if len(coll.MetaData.Title) < 5 {
-		return errors.New("Collection title must be longer than 5 characters.")
+		return errors.New("collection title must be longer than 5 characters")
 	}
 
 	// TODO: What are the rules here?
@@ -83,12 +80,12 @@ func documentationValidator(ctx *jsonapi.Context) error {
 	// validate year
 	ok, err := regexp.MatchString(`^\d{4}$`, coll.MetaData.Year)
 	if !ok || err != nil {
-		return errors.New("Invalid year must be like '2016'.")
+		return errors.New("invalid year must be like '2016'")
 	}
 
 	// validate genre
 	if len(coll.MetaData.Genres) != 1 || coll.MetaData.Genres[0] != "Design" {
-		return errors.New("Collection genre must be 'Design'.")
+		return errors.New("collection genre must be 'Design'")
 	}
 
 	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
@@ -100,8 +97,8 @@ func documentationValidator(ctx *jsonapi.Context) error {
 	doc.Year = coll.MetaData.Year
 
 	// reset lists
-	doc.PeopleIDs = nil
-	doc.TagIDs = nil
+	doc.People = nil
+	doc.Tags = nil
 	doc.Cover = nil
 	doc.Videos = nil
 	doc.Images = nil
@@ -111,7 +108,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 
 	// add authors
 	for _, author := range coll.MetaData.Authors {
-		var p person
+		var p Person
 		err := ctx.Store.DB().C("people").Find(bson.M{
 			"name": author,
 		}).One(&p)
@@ -122,12 +119,12 @@ func documentationValidator(ctx *jsonapi.Context) error {
 			return err
 		}
 
-		doc.PeopleIDs = append(doc.PeopleIDs, p.ID())
+		doc.People = append(doc.People, p.ID())
 	}
 
 	// add tags
 	for _, keyword := range coll.MetaData.Keywords {
-		var t tag
+		var t Tag
 		err := ctx.Store.DB().C("tags").Find(bson.M{
 			"name": keyword,
 		}).One(&t)
@@ -138,29 +135,29 @@ func documentationValidator(ctx *jsonapi.Context) error {
 			return err
 		}
 
-		doc.TagIDs = append(doc.TagIDs, t.ID())
+		doc.Tags = append(doc.Tags, t.ID())
 	}
 
 	// process media entries
 	for _, mediaEntry := range coll.MediaEntries {
 		// validate title
 		if len(mediaEntry.MetaData.Title) < 5 {
-			return errors.New("Entry title must be longer than 5 characters.")
+			return errors.New("entry title must be longer than 5 characters")
 		}
 
 		// validate copyright holder
 		if mediaEntry.MetaData.Copyright.Holder != "Interaction Design" {
-			return errors.New("Entry copyright holder must be 'Interaction Design'.")
+			return errors.New("entry copyright holder must be 'Interaction Design'")
 		}
 
 		// validate copyright license
 		if len(mediaEntry.MetaData.Copyright.Licenses) != 1 || mediaEntry.MetaData.Copyright.Licenses[0] != "Alle Rechte vorbehalten" {
-			return errors.New("Entry copyright license must be 'Alle Rechte vorbehalten'.")
+			return errors.New("entry copyright license must be 'Alle Rechte vorbehalten'")
 		}
 
 		// validate copyright usage
 		if mediaEntry.MetaData.Copyright.Usage != "Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden." {
-			return errors.New("Entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'.")
+			return errors.New("entry copyright usage must be 'Das Werk darf nur mit Einwilligung des Autors/Rechteinhabers weiter verwendet werden.'")
 		}
 
 		// prepare basic file
@@ -231,7 +228,7 @@ func documentationValidator(ctx *jsonapi.Context) error {
 		}
 
 		// add video
-		doc.Videos = append(doc.Videos, video{
+		doc.Videos = append(doc.Videos, Video{
 			Image:      img,
 			MP4Source:  mp4Source.URL,
 			WebMSource: webmSource.URL,
@@ -241,42 +238,18 @@ func documentationValidator(ctx *jsonapi.Context) error {
 	return nil
 }
 
-func passwordAuthorizer(allowStudentsOnCreate bool) jsonapi.Callback {
-	return func(ctx *jsonapi.Context) error {
-		// only require authorization for writes
-		if !ctx.Action.Write() {
-			return nil
-		}
-
-		// get password from header
-		pw := ctx.Echo.Request().Header().Get("Authorization")
-
-		// allow creating stuff as student or admin
-		if ctx.Action == jsonapi.Create && allowStudentsOnCreate && pw == studentPassword {
-			return nil
-		}
-
-		// check password
-		if pw == adminPassword {
-			return nil
-		}
-
-		return errors.New("Invalid password.")
-	}
-}
-
-func slugAndNameValidator(ctx *jsonapi.Context) error {
+func slugAndNameValidator(ctx *fire.Context) error {
 	// only validate on create and update
-	if ctx.Action != jsonapi.Create && ctx.Action != jsonapi.Update {
+	if ctx.Action != fire.Create && ctx.Action != fire.Update {
 		return nil
 	}
 
-	if len(ctx.Model.Get("slug").(string)) < 5 {
-		return errors.New("Slug must be at least 5 characters.")
+	if len(ctx.Model.MustGet("slug").(string)) < 5 {
+		return errors.New("slug must be at least 5 characters")
 	}
 
-	if len(ctx.Model.Get("name").(string)) < 5 {
-		return errors.New("Name must be at least 5 characters.")
+	if len(ctx.Model.MustGet("name").(string)) < 5 {
+		return errors.New("mame must be at least 5 characters")
 	}
 
 	return nil

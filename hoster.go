@@ -10,17 +10,16 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/gonfire/fire"
-	"github.com/gonfire/fire/model"
+	"github.com/256dpi/fire/coal"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 )
 
 type hoster struct {
-	store *model.Store
+	store *coal.Store
 }
 
-func newHoster(store *model.Store) *hoster {
+func newHoster(store *coal.Store) *hoster {
 	return &hoster{
 		store: store,
 	}
@@ -28,12 +27,6 @@ func newHoster(store *model.Store) *hoster {
 
 func (h *hoster) Register(router *echo.Echo) {
 	router.GET("web/:id/:num/:file", h.serveFile)
-}
-
-func (h *hoster) Inspect() fire.ComponentInfo {
-	return fire.ComponentInfo{
-		Name: "Hoster",
-	}
 }
 
 func (h *hoster) serveFile(ctx echo.Context) error {
@@ -52,7 +45,7 @@ func (h *hoster) serveFile(ctx echo.Context) error {
 	defer store.Close()
 
 	// get documentation
-	var doc documentation
+	var doc Documentation
 	err := store.DB().C("documentations").FindId(id).One(&doc)
 	if err != nil {
 		return err
