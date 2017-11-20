@@ -55,7 +55,7 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 
 	// register group
 	mux.Handle("/api/", fire.Compose(
-		authenticator.Authorizer("", true),
+		authenticator.Authorizer("", false),
 		extendedAuthorizer(store, reporter),
 		g.Endpoint("/api/"),
 	))

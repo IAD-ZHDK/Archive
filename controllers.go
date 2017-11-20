@@ -5,6 +5,8 @@ import (
 	"github.com/256dpi/fire/coal"
 )
 
+// TODO: Require Admin privileges to change stuff.
+
 func documentationController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Documentation{},

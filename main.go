@@ -29,7 +29,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// build v1 api handler
-	mux.Handle("/v1/", handler(store, os.Getenv("SECRET"), debug))
+	mux.Handle("/", handler(store, os.Getenv("SECRET"), debug))
 
 	// get port
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
