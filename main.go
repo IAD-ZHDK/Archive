@@ -129,6 +129,8 @@ func ensureApplication(store *coal.Store, name string) error {
 	// check count
 	if len(apps) > 1 {
 		return errors.New("to many applications with that name")
+	} else if len(apps) == 1 {
+		return nil
 	}
 
 	// application is missing
