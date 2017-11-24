@@ -1,15 +1,21 @@
 <h2>Login</h2>
 
 <form {{action 'submit' on='submit'}}>
-  {{input value=email}}
-  <label>Email</label>
+  <p>
+    <label>Email</label>
+    {{input value=email}}
+  </p>
 
-  {{input value=password type='password'}}
-  <label>Password</label>
+  <p>
+    <label>Password</label>
+    {{input value=password type='password'}}
+  </p>
 
-  <button class="submit" {{action 'authenticate'}}>
-    Submit
-  </button>
+  <p>
+    <button class="submit" {{action 'authenticate'}}>
+      Submit
+    </button>
+  </p>
 
   {{#if error}}
     <p class="error">
