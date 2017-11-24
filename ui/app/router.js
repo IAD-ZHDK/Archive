@@ -35,6 +35,11 @@ Router.map(function() {
       this.route('new');
       this.route('edit', { path: ':slug' });
     });
+
+    this.route('users', function(){
+      this.route('new');
+      this.route('edit', { path: ':id' });
+    });
   });
 });
 
