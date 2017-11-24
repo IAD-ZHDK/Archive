@@ -23,15 +23,8 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 	policy.RefreshToken = &flame.RefreshToken{}
 	policy.Clients = []flame.Client{&flame.Application{}}
 	policy.GrantStrategy = flame.DefaultGrantStrategy
-
-	// set resource owner callback
 	policy.ResourceOwners = func(c flame.Client) []flame.ResourceOwner {
 		return []flame.ResourceOwner{&flame.User{}}
-	}
-
-	// set data for token callback
-	policy.TokenData = func(c flame.Client, ro flame.ResourceOwner) map[string]interface{} {
-		return nil
 	}
 
 	// create authenticator
