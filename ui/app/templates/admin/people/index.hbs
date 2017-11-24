@@ -1,1 +1,16 @@
 <h4>List</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+  </tr>
+  </thead>
+  {{#each model as |person|}}
+    <tr>
+      <td>{{link-to person.name 'admin.people.edit' person}}</td>
+      <td>{{person.slug}}</td>
+    </tr>
+  {{/each}}
+</table>

@@ -1,1 +1,16 @@
 <h4>List</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+  </tr>
+  </thead>
+  {{#each model as |tag|}}
+    <tr>
+      <td>{{link-to tag.name 'admin.tags.edit' tag}}</td>
+      <td>{{tag.slug}}</td>
+    </tr>
+  {{/each}}
+</table>
