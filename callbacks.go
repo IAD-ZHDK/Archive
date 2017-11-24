@@ -1,10 +1,10 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"regexp"
 	"strings"
-	"errors"
 
 	"github.com/256dpi/fire"
 	"github.com/IAD-ZHDK/madek"

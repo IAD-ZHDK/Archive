@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -9,8 +8,6 @@ import (
 
 	"github.com/256dpi/fire/coal"
 	"github.com/256dpi/fire/flame"
-	"github.com/pborman/uuid"
-	"gopkg.in/mgo.v2/bson"
 )
 
 var debug = os.Getenv("DEBUG") == "yes"
@@ -53,19 +50,19 @@ func prepareDatabase(store *coal.Store) error {
 	}
 
 	// ensure first user
-	err = ensureFirstUser(store)
+	err = flame.EnsureFirstUser(store, "Root", "root@archive.iad.zhdk.ch", "root")
 	if err != nil {
 		return err
 	}
 
 	// ensure admin application
-	err = ensureApplication(store, "Admin")
+	err = flame.EnsureApplication(store, "Admin")
 	if err != nil {
 		return err
 	}
 
 	// admin application key
-	adminAppKey, err := getApplicationKey(store, "Admin")
+	adminAppKey, err := flame.GetApplicationKey(store, "Admin")
 	if err != nil {
 		return err
 	}
@@ -74,103 +71,4 @@ func prepareDatabase(store *coal.Store) error {
 	fmt.Printf("Admin Application Key: %s\n", adminAppKey)
 
 	return nil
-}
-
-func ensureFirstUser(store *coal.Store) error {
-	// TODO: Move to flame.
-
-	// copy store
-	s := store.Copy()
-	defer s.Close()
-
-	// count super users
-	n, err := s.C(&flame.User{}).Count()
-	if err != nil {
-		return err
-	}
-
-	// check existence
-	if n > 0 {
-		return nil
-	}
-
-	// create super user
-	user := coal.Init(&flame.User{}).(*flame.User)
-	user.Name = "Root"
-	user.Email = "root@archive.iad.zhdk.ch"
-	user.Password = "root"
-
-	// set key and secret
-	err = user.Validate()
-	if err != nil {
-		return err
-	}
-
-	// save super user
-	return s.C(user).Insert(user)
-}
-
-func ensureApplication(store *coal.Store, name string) error {
-	// TODO: Move to flame.
-
-	// copy store
-	s := store.Copy()
-	defer s.Close()
-
-	// count main applications
-	var apps []flame.Application
-	err := s.C(&flame.Application{}).Find(bson.M{
-		coal.F(&flame.Application{}, "Name"): name,
-	}).All(&apps)
-	if err != nil {
-		return err
-	}
-
-	// check count
-	if len(apps) > 1 {
-		return errors.New("to many applications with that name")
-	} else if len(apps) == 1 {
-		return nil
-	}
-
-	// application is missing
-
-	// create application
-	app := coal.Init(&flame.Application{}).(*flame.Application)
-	app.Name = name
-	app.Key = uuid.New()
-	app.Secret = uuid.New()
-
-	// validate model
-	err = app.Validate()
-	if err != nil {
-		return err
-	}
-
-	// save application
-	err = s.C(app).Insert(app)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func getApplicationKey(store *coal.Store, name string) (string, error) {
-	// TODO: Move to flame.
-
-	// copy store
-	s := store.Copy()
-	defer s.Close()
-
-	// get application
-	var app flame.Application
-	err := s.C(&app).Find(bson.M{
-		"name": name,
-	}).One(&app)
-	if err != nil {
-		return "", err
-	}
-
-	return app.Key, nil
 }

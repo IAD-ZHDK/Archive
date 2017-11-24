@@ -22,7 +22,7 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 	policy.AccessToken = &flame.AccessToken{}
 	policy.RefreshToken = &flame.RefreshToken{}
 	policy.Clients = []flame.Client{&flame.Application{}}
-	policy.GrantStrategy = grantStrategy
+	policy.GrantStrategy = flame.DefaultGrantStrategy
 
 	// set resource owner callback
 	policy.ResourceOwners = func(c flame.Client) []flame.ResourceOwner {
@@ -55,8 +55,7 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 
 	// register group
 	mux.Handle("/api/", fire.Compose(
-		authenticator.Authorizer("", false),
-		extendedAuthorizer(store, reporter),
+		authenticator.Authorizer("", false, true, true),
 		g.Endpoint("/api/"),
 	))
 

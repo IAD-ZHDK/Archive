@@ -10,8 +10,8 @@ import (
 
 func userController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
-		Model: &flame.User{},
-		Store: store,
+		Model:       &flame.User{},
+		Store:       store,
 		Authorizers: fire.L(),
 		Validators: fire.L(
 			fire.ModelValidator(),

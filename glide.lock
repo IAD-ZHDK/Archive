@@ -1,8 +1,8 @@
-hash: b6ce2cd34693ba5cdb1394a85777181637f861854023989147d15372daa90318
-updated: 2017-11-20T16:21:43.024394979+01:00
+hash: 339d2d8ea4603be3424c8469f98feba2e70275a493ec1bd620a5d8552f43835f
+updated: 2017-11-24T17:08:47.899610214+01:00
 imports:
 - name: github.com/256dpi/fire
-  version: d825c8f71ea012f5d1eed8db7eecd92bfc0770f4
+  version: 83081de7acdc431fe13e0059d8a412faa0d5f3c8
   subpackages:
   - coal
   - flame
