@@ -1,0 +1,71 @@
+<h4>{{model.title}}</h4>
+
+<p>{{link-to 'Edit' 'admin.documentations.edit' model}}</p>
+
+<p>{{model.subtitle}}</p>
+
+<p>{{model.abstract}}</p>
+
+<p>{{model.year}}</p>
+
+<h5>Documents</h5>
+<ul>
+  {{#each model.documents as |document|}}
+    <li><a href="{{document.download}}">{{document.title}}</a></li>
+  {{/each}}
+</ul>
+
+<h5>Websites</h5>
+<ul>
+  {{#each model.websites as |website|}}
+    <li>{{website.title}}</li>
+  {{/each}}
+</ul>
+
+<h5>Files</h5>
+<ul>
+  {{#each model.files as |file|}}
+    <li><a href="{{file.download}}">{{file.title}}</a></li>
+  {{/each}}
+</ul>
+
+<h5>People</h5>
+<ul>
+  {{#each model.people as |person|}}
+    <li>{{person.name}}</li>
+  {{/each}}
+</ul>
+
+<h5>Tags</h5>
+<ul>
+  {{#each model.tags as |tag|}}
+    <li>{{tag.name}}</li>
+  {{/each}}
+</ul>
+
+<h5>Videos</h5>
+<p>
+  {{#each model.videos as |video|}}
+    <a href="{{video.download}}">
+      <img src="{{video.low-res}}" alt="{{video.title}}"/>
+    </a>
+  {{/each}}
+</p>
+
+<h5>Cover</h5>
+<p>
+  {{#if model.cover}}
+    <a href="{{model.cover.download}}">
+      <img height="200" src="{{model.cover.low-res}}" alt="{{model.cover.title}}"/>
+    </a>
+  {{/if}}
+</p>
+
+<h5>Images</h5>
+<p>
+  {{#each model.images as |image|}}
+    <a href="{{image.download}}">
+      <img height="200" src="{{image.low-res}}" alt="{{image.title}}"/>
+    </a>
+  {{/each}}
+</p>

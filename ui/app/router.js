@@ -23,7 +23,8 @@ Router.map(function() {
 
     this.route('documentations', function(){
       this.route('new');
-      this.route('edit', { path: ':slug' });
+      this.route('show', { path: 'show/:slug' });
+      this.route('edit', { path: 'edit/:slug' });
     });
 
     this.route('people', function(){
