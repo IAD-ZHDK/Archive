@@ -7,7 +7,6 @@ import (
 	"github.com/256dpi/fire/coal"
 	"github.com/256dpi/fire/flame"
 	"github.com/256dpi/fire/wood"
-	"github.com/goware/cors"
 )
 
 func handler(store *coal.Store, secret string, debug bool) http.Handler {
@@ -49,6 +48,7 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 	g.Reporter = reporter
 
 	// add all controllers
+	g.Add(userController(store))
 	g.Add(documentationController(store))
 	g.Add(personController(store))
 	g.Add(tagController(store))
@@ -60,17 +60,9 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 		g.Endpoint("/api/"),
 	))
 
-	// create protector
-	protector := wood.NewProtector("8M", cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowedHeaders: []string{"Origin", "Accept", "Content-Type",
-			"Authorization", "Cache-Control", "X-Requested-With"},
-		AllowedMethods: []string{"GET", "POST", "PATCH", "DELETE"},
-	})
-
 	// compose handler
 	handler := fire.Compose(
-		protector,
+		wood.DefaultProtector(),
 		mux,
 	)
 

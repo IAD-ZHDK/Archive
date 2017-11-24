@@ -35,7 +35,7 @@ func grantStrategy(scope oauth2.Scope, c flame.Client, ro flame.ResourceOwner) (
 }
 
 func extendedAuthorizer(store *coal.Store, reporter func(error)) func(http.Handler) http.Handler {
-	// TODO: Move flame.
+	// TODO: Move to flame?
 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
