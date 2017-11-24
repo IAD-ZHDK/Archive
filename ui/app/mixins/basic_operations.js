@@ -13,13 +13,6 @@ export default Ember.Mixin.create({
     } else {
       this.set('error', failure);
     }
-
-    setTimeout(() => {
-      this.set('error', null);
-    }, 2000);
-  },
-  setAttribute(key, value) {
-    this.get('model').set(key, value);
   },
   saveModel(route) {
     this.get('model').save().then(() => {
