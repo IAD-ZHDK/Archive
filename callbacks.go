@@ -111,7 +111,7 @@ func documentationValidator(ctx *fire.Context) error {
 		authorName := author.FirstName + " " + author.LastName
 		var p Person
 		err := ctx.Store.DB().C("people").Find(bson.M{
-			"name": author,
+			"name": authorName,
 		}).One(&p)
 		if err == mgo.ErrNotFound {
 			return errors.New("Person " + authorName + " has not yet been created.")
