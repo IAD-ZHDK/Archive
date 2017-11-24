@@ -1,1 +1,15 @@
 <h4>New</h4>
+
+<form {{action 'submit' on='submit'}}>
+  {{partial 'admin/forms/documentation'}}
+
+  <button class="submit" {{action 'create'}}>
+    Create
+  </button>
+
+  {{#if error}}
+    <p class="error">
+      {{error}}
+    </p>
+  {{/if}}
+</form>

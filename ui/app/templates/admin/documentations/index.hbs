@@ -1,1 +1,20 @@
 <h4>List</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Slug</th>
+    <th>Madek ID</th>
+    <th>Madek Cover ID</th>
+    <th>Published</th>
+  </tr>
+  </thead>
+  {{#each model as |doc|}}
+    <tr>
+      <td>{{link-to doc.slug 'admin.documentations.edit' doc}}</td>
+      <td>{{doc.madekId}}</td>
+      <td>{{doc.madekCoverId}}</td>
+      <td>{{doc.published}}</td>
+    </tr>
+  {{/each}}
+</table>

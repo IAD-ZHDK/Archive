@@ -1,1 +1,19 @@
 <h4>Edit</h4>
+
+<form {{action 'submit' on='submit'}}>
+  {{partial 'admin/forms/documentation'}}
+
+  <button class="submit" {{action 'update'}}>
+    Update
+  </button>
+
+  <button class="submit" {{action 'delete'}}>
+    Delete
+  </button>
+
+  {{#if error}}
+    <p class="error">
+      {{error}}
+    </p>
+  {{/if}}
+</form>
