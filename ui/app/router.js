@@ -7,6 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('projects');
+  this.route('collections');
+
   this.route('documentation', { path: 'd/:slug' });
   this.route('person', { path: 'p/:slug' });
   this.route('tag', { path: 't/:slug' });
