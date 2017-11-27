@@ -1,1 +1,74 @@
-<h2>Projects</h2>
+<div class="pane image" style="background-image: url({{model.cover.high-res}})"></div>
+
+<div class="pane">
+  <div class="text">
+    <h2>{{model.title}}</h2>
+    <p class="subtitle">{{model.subtitle}}</p>
+    <p class="details">
+      <div>
+        <span>{{link-to model.year 'year' model.year}}</span>
+      </div>
+      <div>
+        {{#each model.people as |person|}}
+          <span>{{link-to person.name 'person' person.slug}}</span>
+        {{/each}}
+      </div>
+      <div>
+        {{#each model.tags as |tag|}}
+          <span>{{link-to tag.name 'tag' tag.slug}}</span>
+        {{/each}}
+      </div>
+    </p>
+  </div>
+</div>
+
+<div class="pane">
+  <div class="text">
+    <p class="abstract">{{model.abstract}}</p>
+  </div>
+</div>
+
+<div class="pane">
+  <div class="text">
+    {{#each model.videos as |video|}}
+      <video controls poster="{{video.high-res}}">
+        <source src="{{video.mp4-source}}" type="video/mp4">
+        <source src="{{video.webm-source}}" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    {{/each}}
+  </div>
+</div>
+
+<div class="pane">
+  <div class="text">
+    {{#each model.images as |image|}}
+      <a href="{{image.download}}">
+        <img src="{{image.low-res}}" alt="{{image.title}}"/>
+      </a>
+    {{/each}}
+  </div>
+</div>
+
+<div class="pane">
+  <h5>Documents</h5>
+  <ul>
+    {{#each model.documents as |document|}}
+      <li><a href="{{document.download}}">{{document.title}}</a></li>
+    {{/each}}
+  </ul>
+
+  <h5>Websites</h5>
+  <ul>
+    {{#each model.websites as |website|}}
+      <li>{{website.title}}</li>
+    {{/each}}
+  </ul>
+
+  <h5>Files</h5>
+  <ul>
+    {{#each model.files as |file|}}
+      <li><a href="{{file.download}}">{{file.title}}</a></li>
+    {{/each}}
+  </ul>
+</div>

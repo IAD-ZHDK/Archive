@@ -1,7 +1,9 @@
 .app
   > .toolbar
-    margin: 40px
     display: flex
+    max-width: 1000px
+    margin: 0 auto
+    padding: 40px
     justify-content: flex-start
     .left
       h1
@@ -43,6 +45,32 @@
         background-color: #eee
       &.special
         background-color: $yellow
+      &.image
+        min-height: 500px
+        background-size: cover
+        background-position: center
+      .text
+        max-width: 1000px
+        margin: 0 auto
+        overflow: hidden
+        h2
+          font-size: 64px
+          font-weight: normal
+        p.subtitle
+          width: 65%
+          float: left
+          font-size: 24px
+          margin: 0
+        p.details
+          margin: 0
+          width: 25%
+          float: right
+        p.abstract
+          width: 65%
+          margin: 0
+          font-size: 18px
+        video, img
+          width: 100%
 
   .footer
     background-color: $yellow

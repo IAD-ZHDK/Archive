@@ -4,4 +4,9 @@
 
 <div class="pane">
   <h2>Recent Projects</h2>
+  <ul>
+    {{#each model as |project|}}
+      <li>{{link-to project.title 'project' project}}</li>
+    {{/each}}
+  </ul>
 </div>

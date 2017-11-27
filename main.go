@@ -12,6 +12,8 @@ import (
 
 var debug = os.Getenv("DEBUG") == "yes"
 
+// TODO: Resize images on the fly.
+
 func main() {
 	// create store
 	store := coal.MustCreateStore(os.Getenv("MONGODB_URI"))
