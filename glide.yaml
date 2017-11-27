@@ -4,4 +4,4 @@ import:
   version: ^0.8.7
 - package: gopkg.in/mgo.v2
 - package: github.com/IAD-ZHDK/madek
-  version: ^0.1.0
+  version: ^0.2.0

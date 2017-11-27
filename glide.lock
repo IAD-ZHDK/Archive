@@ -1,5 +1,5 @@
-hash: 339d2d8ea4603be3424c8469f98feba2e70275a493ec1bd620a5d8552f43835f
-updated: 2017-11-24T17:08:47.899610214+01:00
+hash: 228dac44511f536f887821e59451272e60bda6bd1f5f00ef09304080c13ecda5
+updated: 2017-11-27T11:13:52.088468012+01:00
 imports:
 - name: github.com/256dpi/fire
   version: 83081de7acdc431fe13e0059d8a412faa0d5f3c8
@@ -23,7 +23,7 @@ imports:
 - name: github.com/goware/cors
   version: dba6525398619dead495962a916728e7ee2ca322
 - name: github.com/IAD-ZHDK/madek
-  version: fae375552d28c77a8a7b08a04aefba1398900d96
+  version: e3ef7ef4e3ea0a2c3149e78e71d6242505b0215f
 - name: github.com/labstack/echo
   version: e08070379af60f5b9c0fb5bb2d1527ba9624fe43
   subpackages:
@@ -39,14 +39,8 @@ imports:
   version: ed8eb9e318d7a84ce5915b495b7d35e0cfe7b5a8
 - name: github.com/mattn/go-isatty
   version: 66b8e73f3f5cda9f96b69efd03dd3d7fc4a5cdb8
-- name: github.com/moul/http2curl
-  version: b1479103caacaa39319f75e7f57fc545287fca0d
-- name: github.com/parnurzeal/gorequest
-  version: a578a48e8d6ca8b01a3b18314c43c6716bb5f5a3
 - name: github.com/pborman/uuid
   version: e790cca94e6cc75c7064b1332e63811d4aae1a53
-- name: github.com/pkg/errors
-  version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/tidwall/gjson
   version: 5a69e67cfd8f6f9b0044ed49f5079d0eeed28653
 - name: github.com/tidwall/match
@@ -62,7 +56,6 @@ imports:
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
   - context
-  - publicsuffix
 - name: golang.org/x/sys
   version: a646d33e2ee3172a661fc09bca23bb4889a41bc8
   subpackages:
