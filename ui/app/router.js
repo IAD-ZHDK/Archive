@@ -19,6 +19,11 @@ Router.map(function() {
   this.route('sign-in');
 
   this.route('admin', function(){
+    this.route('collections', function(){
+      this.route('new');
+      this.route('edit', { path: ':slug' });
+    });
+
     this.route('projects', function(){
       this.route('new');
       this.route('show', { path: 'show/:slug' });

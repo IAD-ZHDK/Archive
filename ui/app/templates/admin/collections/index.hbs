@@ -1,0 +1,16 @@
+<h4>List</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+  </tr>
+  </thead>
+  {{#each model as |collection|}}
+    <tr>
+      <td>{{link-to collection.name 'admin.collections.edit' collection}}</td>
+      <td>{{collection.slug}}</td>
+    </tr>
+  {{/each}}
+</table>

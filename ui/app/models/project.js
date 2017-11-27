@@ -18,6 +18,7 @@ export default DS.Model.extend({
   documents: DS.attr(),
   websites: DS.attr(),
   files: DS.attr(),
+  collections: DS.hasMany('collection'),
   people: DS.hasMany('person'),
   tags: DS.hasMany('tag'),
 
