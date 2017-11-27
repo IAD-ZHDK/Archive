@@ -3,6 +3,6 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   beforeModel() {
-    this.transitionTo('admin.documentations');
+    this.transitionTo('admin.projects');
   }
 })

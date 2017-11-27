@@ -44,9 +44,9 @@ func (h *hoster) serveFile(ctx echo.Context) error {
 	// ensure stores gets closed
 	defer store.Close()
 
-	// get documentation
-	var doc Documentation
-	err := store.DB().C("documentations").FindId(id).One(&doc)
+	// get project
+	var project Project
+	err := store.C(&Project{}).FindId(id).One(&project)
 	if err != nil {
 		return err
 	}
@@ -58,12 +58,12 @@ func (h *hoster) serveFile(ctx echo.Context) error {
 	}
 
 	// validate number
-	if num >= len(doc.Websites) {
+	if num >= len(project.Websites) {
 		return errors.New("invalid website number")
 	}
 
 	// get website
-	website := doc.Websites[num]
+	website := project.Websites[num]
 
 	// load website container
 	res, err := http.Get(website.Stream)

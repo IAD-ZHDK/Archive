@@ -5,7 +5,7 @@ import FindByQuery from 'archive/mixins/find_by_query';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, FindByQuery, {
   model(params) {
-    return this.findByQuery('documentation', {
+    return this.findByQuery('project', {
       slug: params.slug
     });
   },

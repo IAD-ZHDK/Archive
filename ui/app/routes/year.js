@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model(params) {
     return Ember.RSVP.hash({
       year: params.year,
-      documentations: this.store.query('documentation', {
+      projects: this.store.query('project', {
         'filter[year]': params.year,
         'filter[published]': true
       })

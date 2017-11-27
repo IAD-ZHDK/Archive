@@ -18,14 +18,14 @@ var client = madek.NewClient(
 	os.Getenv("MADEK_PASSWORD"),
 )
 
-func documentationValidator(ctx *fire.Context) error {
+func projectValidator(ctx *fire.Context) error {
 	// only run on create and update
 	if ctx.Action != fire.Create && ctx.Action != fire.Update {
 		return nil
 	}
 
 	// get model
-	doc := ctx.Model.(*Documentation)
+	doc := ctx.Model.(*Project)
 
 	// check slug on publishing
 	if doc.Published && len(doc.Slug) < 5 {

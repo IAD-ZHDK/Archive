@@ -8,12 +8,12 @@ export default Ember.Route.extend(FindByQuery, {
       this.findByQuery('person', {
         slug: params.slug,
       }).then((person) => {
-        person.query('documentations', {
+        person.query('projects', {
           'filter[published]': true,
-        }).then((documentations) => {
+        }).then((projects) => {
           resolve({
             person: person,
-            documentations: documentations,
+            projects: projects,
           });
         }).catch(reject);
       }).catch(reject);

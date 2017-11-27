@@ -5,6 +5,6 @@ import AutomaticRollback from 'archive/mixins/automatic_rollback';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, AutomaticRollback, {
   model() {
-    return this.store.createRecord('documentation');
+    return this.store.createRecord('project');
   }
 });

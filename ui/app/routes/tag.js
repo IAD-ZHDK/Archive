@@ -8,12 +8,12 @@ export default Ember.Route.extend(FindByQuery, {
       this.findByQuery('tag', {
         slug: params.slug,
       }).then((tag) => {
-        tag.query('documentations', {
+        tag.query('projects', {
           'filter[published]': true,
-        }).then((documentations) => {
+        }).then((projects) => {
           resolve({
             tag: tag,
-            documentations: documentations,
+            projects: projects,
           });
         }).catch(reject);
       }).catch(reject);

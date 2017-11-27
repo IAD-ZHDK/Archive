@@ -5,13 +5,13 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-var group = coal.NewGroup(&Documentation{}, &Person{}, &Tag{})
+var group = coal.NewGroup(&Project{}, &Person{}, &Tag{})
 
 var indexer = coal.NewIndexer()
 
-// Documentation holds the full documentation info.
-type Documentation struct {
-	coal.Base    `json:"-" bson:",inline" coal:"documentations"`
+// Project holds the full madek data of one project.
+type Project struct {
+	coal.Base    `json:"-" bson:",inline" coal:"projects"`
 	Slug         string `json:"slug" bson:"slug"`
 	MadekID      string `json:"madek-id" bson:"madek_id"`
 	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
@@ -53,20 +53,20 @@ type Video struct {
 	WebMSource string `json:"webm-source" bson:"webm_source"`
 }
 
-// Person represents authors and collaborators on documentations.
+// Person represents authors and collaborators on projects.
 type Person struct {
 	coal.Base `json:"-" bson:",inline" coal:"people"`
 	Slug      string `json:"slug"`
 	Name      string `json:"name"`
 
-	Documentations coal.HasMany `json:"-" bson:"-" coal:"documentations:documentations:people"`
+	Projects coal.HasMany `json:"-" bson:"-" coal:"projects:projects:people"`
 }
 
-// Tag is a single tag for categorizing documentations.
+// Tag is a single tag for categorizing projects.
 type Tag struct {
 	coal.Base `json:"-" bson:",inline" coal:"tags"`
 	Slug      string `json:"slug"`
 	Name      string `json:"name" `
 
-	Documentations coal.HasMany `json:"-" bson:"-" coal:"documentations:documentations:tags"`
+	Projects coal.HasMany `json:"-" bson:"-" coal:"projects:projects:tags"`
 }
