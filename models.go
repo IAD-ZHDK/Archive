@@ -12,7 +12,7 @@ var indexer = coal.NewIndexer()
 // Project holds the full madek data of one project.
 type Project struct {
 	coal.Base    `json:"-" bson:",inline" coal:"projects"`
-	Slug         string `json:"slug" bson:"slug"`
+	Slug         string `json:"slug"`
 	MadekID      string `json:"madek-id" bson:"madek_id"`
 	MadekCoverID string `json:"madek-cover-id" bson:"madek_cover_id"`
 	Published    bool   `json:"published"`
