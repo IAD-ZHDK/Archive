@@ -37,7 +37,10 @@ func projectValidator(ctx *fire.Context) error {
 		return errors.New("invalid madek id")
 	}
 
-	// TODO: Enforce existence of a cover?
+	// require madek cover id
+	if project.MadekCoverID == "" {
+		return errors.New("missing madek cover id")
+	}
 
 	// check madek cover id
 	if project.MadekCoverID != "" && len(project.MadekID) < 30 {
