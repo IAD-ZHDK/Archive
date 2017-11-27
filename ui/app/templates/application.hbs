@@ -1,7 +1,27 @@
-<h1>Archive</h1>
+<div class="app">
+  <div class="toolbar">
+    <div class="left">
+      <h1>{{link-to 'IAD Archive' 'index'}}</h1>
+    </div>
+    <div class="middle">
+      <input type="search" placeholder="Search...">
+    </div>
+    <div class="right">
+      <ul>
+        <li>Projects</li>
+        <li>Collections</li>
+        <li><a href="http://iad.zhdk.ch">IAD Website</a></li>
+      </ul>
+    </div>
+  </div>
 
-<ul>
-  <li>{{link-to 'Admin' 'admin'}}</li>
-</ul>
+  <div class="content">
+    {{outlet}}
+  </div>
 
-{{outlet}}
+  <div class="footer">
+    <ul>
+      <li>{{link-to 'Admin' 'admin'}}</li>
+    </ul>
+  </div>
+</div>

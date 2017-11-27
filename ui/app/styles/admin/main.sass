@@ -1,0 +1,58 @@
+.admin
+  > .toolbar
+    padding: 20px 40px
+    background-color: #ddd
+    display: flex
+    justify-content: flex-start
+    .left
+      h2
+        font-family: 'Helvetica', sans-serif
+        font-size: 16px
+        margin: 0
+        a
+          text-decoration: none
+          &:hover
+            text-decoration: underline
+    .middle
+      flex-grow: 1
+      padding: 0 20px
+    .middle, .right
+      ul
+        list-style: none
+        padding: 0
+        margin: 0
+        li
+          display: inline-block
+          padding: 0 10px
+          a
+            text-decoration: none
+            &:hover
+              text-decoration: underline
+  > .content
+    padding: 40px
+    table
+      border-collapse: collapse
+      th
+        background-color: #eee
+      td, th
+        border: 1px solid #999
+        padding: 6px
+        text-align: left
+
+    label
+      display: block
+    input
+      box-sizing: border-box
+      width: 100%
+    button
+      background-color: #666
+      color: white
+      border: none
+      border-radius: 2px
+      padding: 5px 10px
+      cursor: pointer
+      outline: 0
+      &:hover
+        background-color: #333
+    .error
+      color: red

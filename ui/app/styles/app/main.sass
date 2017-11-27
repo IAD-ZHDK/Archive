@@ -1,0 +1,49 @@
+.app
+  > .toolbar
+    margin: 40px
+    display: flex
+    justify-content: flex-start
+    .left
+      h1
+        background-color: $yellow
+        font-family: 'Helvetica', sans-serif
+        font-size: 24px
+        font-weight: normal
+        margin: 0
+        padding: 3px 6px
+        a
+          text-decoration: none
+    .middle
+      flex-grow: 1
+      padding: 5px 20px
+      input
+        border: 0
+        border-bottom: 2px solid black
+        width: 100%
+        max-width: 300px
+        &:focus
+          outline: 0
+    .right
+      ul
+        list-style: none
+        padding: 0
+        margin: 0
+        li
+          display: inline-block
+          padding: 9px
+          a
+            text-decoration: none
+            &:hover
+              border-bottom: 2px solid $yellow
+  > .content
+    .pane
+      padding: 40px
+      background-color: white
+      &:nth-child(odd)
+        background-color: #eee
+      &.special
+        background-color: $yellow
+
+  .footer
+    background-color: $yellow
+    padding: 40px
