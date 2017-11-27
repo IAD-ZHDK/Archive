@@ -21,6 +21,7 @@ func init() {
 type Collection struct {
 	coal.Base `json:"-" bson:",inline" coal:"collections"`
 	Slug      string          `json:"slug"`
+	Name      string          `json:"name"`
 	Projects  []bson.ObjectId `json:"-" bson:"project_ids" coal:"projects:projects"`
 }
 
