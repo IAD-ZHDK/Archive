@@ -39,7 +39,7 @@ func personController(store *coal.Store) *fire.Controller {
 		Authorizers: fire.L(),
 		Validators: fire.L(
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Tag{}, group),
+			fire.RelationshipValidator(&Person{}, group),
 			slugAndNameValidator,
 		),
 	}
@@ -52,7 +52,7 @@ func tagController(store *coal.Store) *fire.Controller {
 		Authorizers: fire.L(),
 		Validators: fire.L(
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Person{}, group),
+			fire.RelationshipValidator(&Tag{}, group),
 			slugAndNameValidator,
 		),
 	}
