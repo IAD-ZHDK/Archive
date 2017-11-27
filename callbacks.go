@@ -25,32 +25,32 @@ func projectValidator(ctx *fire.Context) error {
 	}
 
 	// get model
-	doc := ctx.Model.(*Project)
+	project := ctx.Model.(*Project)
 
 	// check slug on publishing
-	if doc.Published && len(doc.Slug) < 5 {
+	if project.Published && len(project.Slug) < 5 {
 		return errors.New("slug must be at least 5 characters")
 	}
 
 	// check madek id
-	if len(doc.MadekID) < 30 {
-		return errors.New("invalid Madek ID")
+	if len(project.MadekID) < 30 {
+		return errors.New("invalid madek id")
 	}
 
 	// TODO: Enforce existence of a cover?
 
 	// check madek cover id
-	if doc.MadekCoverID != "" && len(doc.MadekID) < 30 {
-		return errors.New("invalid Madek Cover ID")
+	if project.MadekCoverID != "" && len(project.MadekID) < 30 {
+		return errors.New("invalid madek cover id")
 	}
 
 	// force unpublished on create
 	if ctx.Action == fire.Create {
-		doc.Published = false
+		project.Published = false
 	}
 
 	// compile collection
-	coll, err := client.CompileCollection(doc.MadekID)
+	coll, err := client.CompileCollection(project.MadekID)
 	if err != nil {
 		switch err {
 		case madek.ErrNotFound:
@@ -91,20 +91,20 @@ func projectValidator(ctx *fire.Context) error {
 	// TODO: Affiliation must be Interaction Design (BDE_VIAD...)
 
 	// set data
-	doc.Title = coll.MetaData.Title
-	doc.Subtitle = coll.MetaData.Subtitle
-	doc.Abstract = coll.MetaData.Description
-	doc.Year = coll.MetaData.Year
+	project.Title = coll.MetaData.Title
+	project.Subtitle = coll.MetaData.Subtitle
+	project.Abstract = coll.MetaData.Description
+	project.Year = coll.MetaData.Year
 
 	// reset lists
-	doc.People = nil
-	doc.Tags = nil
-	doc.Cover = nil
-	doc.Videos = nil
-	doc.Images = nil
-	doc.Documents = nil
-	doc.Websites = nil
-	doc.Files = nil
+	project.People = nil
+	project.Tags = nil
+	project.Cover = nil
+	project.Videos = nil
+	project.Images = nil
+	project.Documents = nil
+	project.Websites = nil
+	project.Files = nil
 
 	// add authors
 	for _, author := range coll.MetaData.Authors {
@@ -114,13 +114,13 @@ func projectValidator(ctx *fire.Context) error {
 			"name": authorName,
 		}).One(&p)
 		if err == mgo.ErrNotFound {
-			return errors.New("Person " + authorName + " has not yet been created.")
+			return errors.New("person " + authorName + " has not yet been created.")
 		}
 		if err != nil {
 			return err
 		}
 
-		doc.People = append(doc.People, p.ID())
+		project.People = append(project.People, p.ID())
 	}
 
 	// add tags
@@ -130,13 +130,13 @@ func projectValidator(ctx *fire.Context) error {
 			"name": keyword,
 		}).One(&t)
 		if err == mgo.ErrNotFound {
-			return errors.New("Tag " + keyword + " has not yet been created.")
+			return errors.New("tag " + keyword + " has not yet been created.")
 		}
 		if err != nil {
 			return err
 		}
 
-		doc.Tags = append(doc.Tags, t.ID())
+		project.Tags = append(project.Tags, t.ID())
 	}
 
 	// process media entries
@@ -170,13 +170,13 @@ func projectValidator(ctx *fire.Context) error {
 
 		// add documents and continue
 		if strings.HasSuffix(mediaEntry.FileName, ".pdf") {
-			doc.Documents = append(doc.Documents, fl)
+			project.Documents = append(project.Documents, fl)
 			continue
 		}
 
 		// add websites and continue
 		if strings.HasSuffix(mediaEntry.FileName, ".web.zip") {
-			doc.Websites = append(doc.Websites, fl)
+			project.Websites = append(project.Websites, fl)
 			continue
 		}
 
@@ -205,7 +205,7 @@ func projectValidator(ctx *fire.Context) error {
 
 		// add ordinary file and continue when previews are missing
 		if lowRes == nil || highRes == nil {
-			doc.Files = append(doc.Files, fl)
+			project.Files = append(project.Files, fl)
 			continue
 		}
 
@@ -217,19 +217,19 @@ func projectValidator(ctx *fire.Context) error {
 		}
 
 		// add cover if ids match
-		if mediaEntry.ID == doc.MadekCoverID {
-			doc.Cover = &img
+		if mediaEntry.ID == project.MadekCoverID {
+			project.Cover = &img
 			continue
 		}
 
 		// add image if video sources are missing
 		if mp4Source == nil || webmSource == nil {
-			doc.Images = append(doc.Images, img)
+			project.Images = append(project.Images, img)
 			continue
 		}
 
 		// add video
-		doc.Videos = append(doc.Videos, Video{
+		project.Videos = append(project.Videos, Video{
 			Image:      img,
 			MP4Source:  mp4Source.URL,
 			WebMSource: webmSource.URL,
