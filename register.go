@@ -7,6 +7,7 @@ import (
 	"github.com/256dpi/fire/coal"
 	"github.com/256dpi/fire/flame"
 	"github.com/256dpi/fire/wood"
+	"github.com/goware/cors"
 )
 
 func handler(store *coal.Store, secret string, debug bool) http.Handler {
@@ -54,7 +55,11 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 
 	// compose handler
 	handler := fire.Compose(
-		wood.DefaultProtector(),
+		wood.NewProtector("4M", cors.Options{
+			AllowedOrigins: []string{"*"},
+			AllowedHeaders: []string{"Origin", "Accept", "Content-Type", "Authorization"},
+			AllowedMethods: []string{"GET", "POST", "PATCH", "DELETE"},
+		}),
 		mux,
 	)
 
