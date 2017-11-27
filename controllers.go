@@ -19,6 +19,18 @@ func userController(store *coal.Store) *fire.Controller {
 	}
 }
 
+func collectionController(store *coal.Store) *fire.Controller {
+	return &fire.Controller{
+		Model:       &Collection{},
+		Store:       store,
+		Authorizers: fire.L(),
+		Validators: fire.L(
+			fire.ModelValidator(),
+			fire.RelationshipValidator(&Collection{}, group),
+		),
+	}
+}
+
 func projectController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Project{},

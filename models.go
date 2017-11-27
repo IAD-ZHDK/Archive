@@ -5,11 +5,26 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-var group = coal.NewGroup(&Project{}, &Person{}, &Tag{})
+var group = coal.NewGroup(&Collection{}, &Project{}, &Person{}, &Tag{})
 
 var indexer = coal.NewIndexer()
 
-// Project holds the full madek data of one project.
+func init() {
+	indexer.Add(&Collection{}, true, coal.F(&Collection{}, "Slug"))
+	indexer.Add(&Project{}, true, coal.F(&Project{}, "Slug"))
+	indexer.Add(&Project{}, false, coal.F(&Project{}, "Published"))
+	indexer.Add(&Person{}, true, coal.F(&Person{}, "Slug"))
+	indexer.Add(&Tag{}, true, coal.F(&Tag{}, "Slug"))
+}
+
+// A Collection groups multiple projects.
+type Collection struct {
+	coal.Base `json:"-" bson:",inline" coal:"collections"`
+	Slug      string          `json:"slug"`
+	Projects  []bson.ObjectId `json:"-" bson:"project_ids" coal:"projects:projects"`
+}
+
+// A Project holds the full madek data of one project.
 type Project struct {
 	coal.Base    `json:"-" bson:",inline" coal:"projects"`
 	Slug         string `json:"slug"`
@@ -28,8 +43,9 @@ type Project struct {
 	Websites  []File  `json:"websites"`
 	Files     []File  `json:"files"`
 
-	Tags   []bson.ObjectId `json:"-" bson:"tag_ids" coal:"tags:tags"`
-	People []bson.ObjectId `json:"-" bson:"people_ids" coal:"people:people"`
+	Tags        []bson.ObjectId `json:"-" bson:"tag_ids" coal:"tags:tags"`
+	People      []bson.ObjectId `json:"-" bson:"people_ids" coal:"people:people"`
+	Collections coal.HasMany    `json:"-" bson:"-" coal:"collections:collections:projects"`
 }
 
 // File holds information about a downloadable file.

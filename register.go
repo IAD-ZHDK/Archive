@@ -43,6 +43,7 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 
 	// add all controllers
 	g.Add(userController(store))
+	g.Add(collectionController(store))
 	g.Add(projectController(store))
 	g.Add(personController(store))
 	g.Add(tagController(store))
