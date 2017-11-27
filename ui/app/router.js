@@ -14,13 +14,9 @@ Router.map(function() {
 
   this.route('submit');
 
-  this.route('auth', function(){
-    this.route('login');
-  });
+  this.route('sign-in');
 
   this.route('admin', function(){
-    this.route('login');
-
     this.route('documentations', function(){
       this.route('new');
       this.route('show', { path: 'show/:slug' });

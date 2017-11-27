@@ -29,7 +29,7 @@ module.exports = function(environment) {
   ENV.apiBaseURL = 'http://0.0.0.0:8000';
 
   ENV['ember-simple-auth'] = {
-    authenticationRoute: 'auth.login'
+    authenticationRoute: 'sign-in'
   };
 
   if (environment === 'development') {
