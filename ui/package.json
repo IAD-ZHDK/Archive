@@ -12,7 +12,7 @@
     "test": "ember test"
   },
   "dependencies": {
-    "ember-cli-sass": "^7.1.1",
+    "ember-cli-sass": "^7.2.0",
     "ember-normalize": "^1.0.0",
     "ember-simple-auth": "^1.4.0",
     "normalize.css": "~4.1.1"
