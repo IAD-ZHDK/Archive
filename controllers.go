@@ -12,10 +12,10 @@ func userController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &flame.User{},
 		Store:       store,
-		Authorizers: fire.L(),
-		Validators: fire.L(
+		Authorizers: fire.L{},
+		Validators: fire.L{
 			fire.ModelValidator(),
-		),
+		},
 	}
 }
 
@@ -23,11 +23,11 @@ func collectionController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Collection{},
 		Store:       store,
-		Authorizers: fire.L(),
-		Validators: fire.L(
+		Authorizers: fire.L{},
+		Validators: fire.L{
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Collection{}, group),
-		),
+			fire.RelationshipValidator(&Collection{}, catalog),
+		},
 	}
 }
 
@@ -35,12 +35,12 @@ func projectController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Project{},
 		Store:       store,
-		Authorizers: fire.L(),
-		Validators: fire.L(
+		Authorizers: fire.L{},
+		Validators: fire.L{
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Project{}, group),
-			projectValidator,
-		),
+			fire.RelationshipValidator(&Project{}, catalog),
+			projectValidator(),
+		},
 	}
 }
 
@@ -48,12 +48,12 @@ func personController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Person{},
 		Store:       store,
-		Authorizers: fire.L(),
-		Validators: fire.L(
+		Authorizers: fire.L{},
+		Validators: fire.L{
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Person{}, group),
-			slugAndNameValidator,
-		),
+			fire.RelationshipValidator(&Person{}, catalog),
+			slugAndNameValidator(),
+		},
 	}
 }
 
@@ -61,11 +61,11 @@ func tagController(store *coal.Store) *fire.Controller {
 	return &fire.Controller{
 		Model:       &Tag{},
 		Store:       store,
-		Authorizers: fire.L(),
-		Validators: fire.L(
+		Authorizers: fire.L{},
+		Validators: fire.L{
 			fire.ModelValidator(),
-			fire.RelationshipValidator(&Tag{}, group),
-			slugAndNameValidator,
-		),
+			fire.RelationshipValidator(&Tag{}, catalog),
+			slugAndNameValidator(),
+		},
 	}
 }

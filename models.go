@@ -5,16 +5,16 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-var group = coal.NewGroup(&Collection{}, &Project{}, &Person{}, &Tag{})
+var catalog = coal.NewCatalog(&Collection{}, &Project{}, &Person{}, &Tag{})
 
 var indexer = coal.NewIndexer()
 
 func init() {
-	indexer.Add(&Collection{}, true, coal.F(&Collection{}, "Slug"))
-	indexer.Add(&Project{}, true, coal.F(&Project{}, "Slug"))
-	indexer.Add(&Project{}, false, coal.F(&Project{}, "Published"))
-	indexer.Add(&Person{}, true, coal.F(&Person{}, "Slug"))
-	indexer.Add(&Tag{}, true, coal.F(&Tag{}, "Slug"))
+	indexer.Add(&Collection{}, true, false, "Slug")
+	indexer.Add(&Project{}, true, false, "Slug")
+	indexer.Add(&Project{}, false, false, "Published")
+	indexer.Add(&Person{}, true, false, "Slug")
+	indexer.Add(&Tag{}, true, false, "Slug")
 }
 
 // A Collection groups multiple projects.

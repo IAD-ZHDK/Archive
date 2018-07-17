@@ -1,25 +1,25 @@
-hash: 228dac44511f536f887821e59451272e60bda6bd1f5f00ef09304080c13ecda5
-updated: 2017-11-27T11:13:52.088468012+01:00
+hash: b3f58de543b66f8c40b0dc73bff92d3fa3613adba470d54ca2d8038ca07c9992
+updated: 2018-07-17T14:50:15.451354+02:00
 imports:
 - name: github.com/256dpi/fire
-  version: 83081de7acdc431fe13e0059d8a412faa0d5f3c8
+  version: 8028a8355e6344901c7ff792397fc0f20133f9de
   subpackages:
   - coal
   - flame
   - wood
 - name: github.com/256dpi/jsonapi
-  version: 1a28390515dd8547416f7b0f11106a4684f13679
+  version: dbfb1f4b466ccfb43d3de69dc46e955571d394e2
 - name: github.com/256dpi/oauth2
-  version: 893e79e85a99df8c99231a150d749bb724109642
+  version: dc3da45be566f68e8174a8448212f3058d7c5f7e
   subpackages:
   - bearer
   - revocation
 - name: github.com/256dpi/stack
-  version: 1df9ca8004638b1c19290e290c9ce971e8099cb2
+  version: 7420e9ad7ed883a6ef0a737cca30af639de46b38
 - name: github.com/asaskevich/govalidator
-  version: 7664702784775e51966f0885f5cd27435916517b
+  version: 521b25f4b05fd26bec69d9dedeb8f9c9a83939a8
 - name: github.com/dgrijalva/jwt-go
-  version: dbeaa9332f19a944acb5736b4456cfcc02140e29
+  version: 06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
 - name: github.com/goware/cors
   version: dba6525398619dead495962a916728e7ee2ca322
 - name: github.com/IAD-ZHDK/madek
@@ -39,8 +39,10 @@ imports:
   version: ed8eb9e318d7a84ce5915b495b7d35e0cfe7b5a8
 - name: github.com/mattn/go-isatty
   version: 66b8e73f3f5cda9f96b69efd03dd3d7fc4a5cdb8
-- name: github.com/pborman/uuid
-  version: e790cca94e6cc75c7064b1332e63811d4aae1a53
+- name: github.com/opentracing/opentracing-go
+  version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
+  subpackages:
+  - log
 - name: github.com/tidwall/gjson
   version: 5a69e67cfd8f6f9b0044ed49f5079d0eeed28653
 - name: github.com/tidwall/match

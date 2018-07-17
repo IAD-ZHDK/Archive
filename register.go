@@ -64,13 +64,5 @@ func handler(store *coal.Store, secret string, debug bool) http.Handler {
 		mux,
 	)
 
-	// inject request logger in debug mode
-	if debug {
-		handler = fire.Compose(
-			wood.DefaultRequestLogger(),
-			handler,
-		)
-	}
-
 	return handler
 }
