@@ -13,9 +13,6 @@ func userController(store *coal.Store) *fire.Controller {
 		Model:       &flame.User{},
 		Store:       store,
 		Authorizers: fire.L{},
-		Validators: fire.L{
-			fire.ModelValidator(),
-		},
 	}
 }
 
@@ -25,7 +22,6 @@ func collectionController(store *coal.Store) *fire.Controller {
 		Store:       store,
 		Authorizers: fire.L{},
 		Validators: fire.L{
-			fire.ModelValidator(),
 			fire.RelationshipValidator(&Collection{}, catalog),
 		},
 	}
@@ -36,8 +32,8 @@ func projectController(store *coal.Store) *fire.Controller {
 		Model:       &Project{},
 		Store:       store,
 		Authorizers: fire.L{},
+		Filters:     []string{"Published"},
 		Validators: fire.L{
-			fire.ModelValidator(),
 			fire.RelationshipValidator(&Project{}, catalog),
 			projectValidator(),
 		},
@@ -50,7 +46,6 @@ func personController(store *coal.Store) *fire.Controller {
 		Store:       store,
 		Authorizers: fire.L{},
 		Validators: fire.L{
-			fire.ModelValidator(),
 			fire.RelationshipValidator(&Person{}, catalog),
 			slugAndNameValidator(),
 		},
@@ -63,7 +58,6 @@ func tagController(store *coal.Store) *fire.Controller {
 		Store:       store,
 		Authorizers: fire.L{},
 		Validators: fire.L{
-			fire.ModelValidator(),
 			fire.RelationshipValidator(&Tag{}, catalog),
 			slugAndNameValidator(),
 		},

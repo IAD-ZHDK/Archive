@@ -58,7 +58,7 @@ func prepareDatabase(store *coal.Store) error {
 	}
 
 	// ensure admin application
-	adminAppKey, err := flame.EnsureApplication(store, "Admin", "admin", "")
+	adminAppKey, err := flame.EnsureApplication(store, "Admin", "admin", "abcd1234")
 	if err != nil {
 		return err
 	}

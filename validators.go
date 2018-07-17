@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"regexp"
 	"strings"
 
@@ -12,9 +11,9 @@ import (
 )
 
 var client = madek.NewClient(
-	os.Getenv("MADEK_ADDRESS"),
-	os.Getenv("MADEK_USERNAME"),
-	os.Getenv("MADEK_PASSWORD"),
+	getEnv("MADEK_ADDRESS", "https://medienarchiv.zhdk.ch/"),
+	getEnv("MADEK_USERNAME", "iad-archive"),
+	getEnv("MADEK_PASSWORD", ""),
 )
 
 func projectValidator() *fire.Callback {
@@ -241,12 +240,12 @@ func projectValidator() *fire.Callback {
 func slugAndNameValidator() *fire.Callback {
 	return fire.C("slugAndNameValidator", fire.Only(fire.Create, fire.Update), func(ctx *fire.Context) error {
 		// check slug
-		if len(ctx.Model.MustGet("slug").(string)) < 5 {
+		if len(ctx.Model.MustGet("Slug").(string)) < 5 {
 			return fire.E("slug must be at least 5 characters")
 		}
 
 		// check name
-		if len(ctx.Model.MustGet("name").(string)) < 5 {
+		if len(ctx.Model.MustGet("Name").(string)) < 5 {
 			return fire.E("mame must be at least 5 characters")
 		}
 

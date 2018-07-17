@@ -23,7 +23,7 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.clientID = process.env['CLIENT_ID'];
+  ENV.clientID = 'admin';
 
   ENV.apiBaseURL = 'http://0.0.0.0:8000';
 
