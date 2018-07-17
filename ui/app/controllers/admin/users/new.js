@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 import BasicOperations from 'archive/mixins/basic_operations';
 
-export default Ember.Controller.extend(BasicOperations, {
+export default Controller.extend(BasicOperations, {
   afterCreateRoute: 'admin.users'
 });

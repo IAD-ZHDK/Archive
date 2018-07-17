@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import Route from '@ember/routing/route';
 
 import FindByQuery from 'archive/mixins/find_by_query';
 
-export default Ember.Route.extend(FindByQuery, {
+export default Route.extend(FindByQuery, {
   model(params) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.findByQuery('tag', {
         slug: params.slug,
       }).then((tag) => {

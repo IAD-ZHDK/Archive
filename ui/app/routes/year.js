@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
-    return Ember.RSVP.hash({
+    return hash({
       year: params.year,
       projects: this.store.query('project', {
         'filter[year]': params.year,

@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 // BasicOperations is a Controller mixin that takes care of the common model
 // actions: create, update and delete.
-export default Ember.Mixin.create({
+export default Mixin.create({
   transitionWithModel: false,
   afterCreateRoute: 'application',
   afterUpdateRoute: 'application',

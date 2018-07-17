@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { mapBy, map } from '@ember/object/computed';
 import DS from 'ember-data';
 
 import config from 'archive/config/environment';
@@ -22,18 +23,18 @@ export default DS.Model.extend({
   people: DS.hasMany('person'),
   tags: DS.hasMany('tag'),
 
-  peopleNames: Ember.computed.mapBy('people', 'name'),
-  tagNames: Ember.computed.mapBy('tags', 'name'),
-  peopleList: Ember.computed('peopleNames', function(){
+  peopleNames: mapBy('people', 'name'),
+  tagNames: mapBy('tags', 'name'),
+  peopleList: computed('peopleNames', function(){
     return this.get('peopleNames').join(', ');
   }),
-  tagsList: Ember.computed('tagNames', function(){
+  tagsList: computed('tagNames', function(){
     return this.get('tagNames').join(', ');
   }),
-  madekUrl: Ember.computed('madekId', function(){
+  madekUrl: computed('madekId', function(){
     return 'https://medienarchiv.zhdk.ch/sets/' + this.get('madekId');
   }),
-  websitesWithLinks: Ember.computed.map('websites', function(website, i){
+  websitesWithLinks: map('websites', function(website, i){
     return {
       title: website.title,
       link: config.apiBaseURL + '/web/' + this.get('id') + '/' + i.toString() + '/index.html'
