@@ -13,9 +13,8 @@
   },
   "dependencies": {
     "ember-cli-sass": "^7.2.0",
-    "ember-normalize": "^1.0.0",
     "ember-simple-auth": "^1.4.0",
-    "normalize.css": "~4.1.1"
+    "normalize.css": "^8.0.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.7.0",
