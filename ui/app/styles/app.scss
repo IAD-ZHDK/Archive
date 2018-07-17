@@ -1,0 +1,14 @@
+$yellow: #F3DF75;
+
+@import "main";
+@import "admin";
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: "Helvetica", sans-serif;
+
+  a {
+    color: black;
+  }
+}
