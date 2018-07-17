@@ -32,7 +32,7 @@ func projectController(store *coal.Store) *fire.Controller {
 		Model:       &Project{},
 		Store:       store,
 		Authorizers: fire.L{},
-		Filters:     []string{"Published"},
+		Filters:     []string{"Published", "Year", "Slug"},
 		Validators: fire.L{
 			fire.RelationshipValidator(&Project{}, catalog),
 			projectValidator(),
