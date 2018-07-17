@@ -6,5 +6,9 @@ import config from 'archive/config/environment';
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: config.apiBaseURL,
   namespace: 'api',
-  authorizer: 'authorizer:oauth2'
+
+  authorize(xhr) {
+    let { access_token } = this.get('session.data.authenticated');
+    xhr.setRequestHeader('Authorization', `Bearer ${access_token}`);
+  }
 });
