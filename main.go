@@ -10,13 +10,16 @@ import (
 	"github.com/256dpi/fire/flame"
 )
 
-var debug = os.Getenv("DEBUG") == "yes"
+var debug = getEnv("DEBUG", "no") == "yes"
+var mongo = getEnv("MONGODB_URI", "mongodb://localhost/iad-archive")
+var secret = getEnv("SECRET", "abcd1234abcd1234")
+var port = getEnv("PORT", "8000")
 
 // TODO: Resize images on the fly.
 
 func main() {
 	// create store
-	store := coal.MustCreateStore(os.Getenv("MONGODB_URI"))
+	store := coal.MustCreateStore(mongo)
 
 	// prepare database
 	err := prepareDatabase(store)
@@ -28,13 +31,10 @@ func main() {
 	mux := http.NewServeMux()
 
 	// build v1 api handler
-	mux.Handle("/", handler(store, os.Getenv("SECRET"), debug))
+	mux.Handle("/", handler(store, secret, debug))
 
 	// get port
-	port, _ := strconv.Atoi(os.Getenv("PORT"))
-	if port == 0 {
-		port = 8000
-	}
+	port, _ := strconv.Atoi(port)
 
 	// run plain server
 	fmt.Printf("Running on http://0.0.0.0:%d\n", port)
@@ -73,4 +73,13 @@ func prepareDatabase(store *coal.Store) error {
 	fmt.Printf("Admin Application Key: %s\n", adminAppKey)
 
 	return nil
+}
+
+func getEnv(key, def string) string {
+	val := os.Getenv(key)
+	if val != "" {
+		return val
+	}
+
+	return def
 }
