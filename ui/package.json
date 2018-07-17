@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "ember-cli-sass": "^7.1.1",
-    "ember-simple-auth": "^1.4.0",
     "ember-normalize": "^1.0.0",
+    "ember-simple-auth": "^1.4.0",
     "normalize.css": "~4.1.1"
   },
   "devDependencies": {
@@ -31,6 +31,7 @@
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-cli-update": "^0.22.0",
     "ember-data": "~2.16.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
