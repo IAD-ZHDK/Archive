@@ -9,9 +9,10 @@ export default Route.extend(FindByQuery, {
       this.findByQuery('tag', {
         slug: params.slug,
       }).then((tag) => {
-        tag.query('projects', {
-          'filter[published]': true,
-        }).then((projects) => {
+        this.findByQuery('project', {
+          tags: tag.id,
+          published: true,
+        }, true).then((projects) => {
           resolve({
             tag: tag,
             projects: projects,

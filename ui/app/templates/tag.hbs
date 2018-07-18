@@ -1,1 +1,9 @@
-<h2>Tag</h2>
+<div class="pane">
+  <h2>Tag</h2>
+
+  {{model.tag}}
+
+  {{#each model.projects as |project|}}
+    {{project}}
+  {{/each}}
+</div>

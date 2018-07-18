@@ -1,1 +1,9 @@
-<h2>Year</h2>
+<div class="pane">
+  <h2>Year</h2>
+
+  {{model.year}}
+
+  {{#each model.projects as |project|}}
+    {{project}}
+  {{/each}}
+</div>
