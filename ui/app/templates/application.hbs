@@ -1,21 +1,23 @@
-<div class="app">
+<div>
   <div class="toolbar">
-    <div class="left">
-      <h1>{{link-to 'IAD Archive' 'index'}}</h1>
+    <div>
+      <h1 class="toolbar__title">{{link-to 'IAD Archive' 'index'}}</h1>
     </div>
-    <div class="middle">
-      <input type="search" placeholder="Search...">
+
+    <div class="toolbar__middle">
+      <input class="toolbar__search" type="search" placeholder="Search...">
     </div>
-    <div class="right">
-      <ul>
-        <li>{{link-to 'Collections' 'collections'}}</li>
-        <li>{{link-to 'Projects' 'projects'}}</li>
-        <li><a href="http://iad.zhdk.ch">IAD Website</a></li>
+
+    <div>
+      <ul class="toolbar__links">
+        <li class="toolbar__links__link">{{link-to 'Collections' 'collections'}}</li>
+        <li class="toolbar__links__link">{{link-to 'Projects' 'projects'}}</li>
+        <li class="toolbar__links__link"><a href="http://iad.zhdk.ch">IAD Website</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="content">
+  <div>
     {{outlet}}
   </div>
 

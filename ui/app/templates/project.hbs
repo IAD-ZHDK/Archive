@@ -1,11 +1,12 @@
-<div class="pane image" style={{backgroundImage}}></div>
+<div class="pane pane--image" style={{backgroundImage}}></div>
 
 <div class="pane">
-  <div class="text">
-    <h2>{{model.title}}</h2>
-    <p class="subtitle">{{model.subtitle}}</p>
+  <div class="pane__wrapper">
+    <h2 class="pane__title">{{model.title}}</h2>
 
-    <p class="details">
+    <p class="pane__subtitle">{{model.subtitle}}</p>
+
+    <p class="pane__details">
       <div>
         {{#each model.tags as |tag|}}
           <span>{{link-to tag.name 'tag' tag.slug}}</span>
@@ -26,15 +27,17 @@
 </div>
 
 <div class="pane">
-  <div class="text">
-    <p class="abstract">{{model.abstract}}</p>
+  <div class="pane__wrapper">
+    <p class="pane__abstract">
+      {{model.abstract}}
+    </p>
   </div>
 </div>
 
 <div class="pane">
-  <div class="text">
+  <div class="pane__wrapper">
     {{#each model.videos as |vid|}}
-      <video controls poster="{{vid.high-res}}">
+      <video class="pane__video" controls poster="{{vid.high-res}}">
         <source src="{{vid.mp4-source}}" type="video/mp4">
         <source src="{{vid.webm-source}}" type="video/webm">
         Your browser does not support the video tag.
@@ -44,7 +47,7 @@
 </div>
 
 <div class="pane">
-  <div class="text">
+  <div class="pane__wrapper">
     {{#each model.images as |image|}}
       <a href="{{image.download}}">
         <img src="{{image.low-res}}" alt="{{image.title}}"/>
@@ -54,24 +57,26 @@
 </div>
 
 <div class="pane">
-  <h5>Documents</h5>
-  <ul>
-    {{#each model.documents as |document|}}
-      <li><a href="{{document.download}}">{{document.title}}</a></li>
-    {{/each}}
-  </ul>
+  <div class="pane__wrapper">
+    <h5>Documents</h5>
+    <ul>
+      {{#each model.documents as |document|}}
+        <li><a href="{{document.download}}">{{document.title}}</a></li>
+      {{/each}}
+    </ul>
 
-  <h5>Websites</h5>
-  <ul>
-    {{#each model.websites as |website|}}
-      <li>{{website.title}}</li>
-    {{/each}}
-  </ul>
+    <h5>Websites</h5>
+    <ul>
+      {{#each model.websites as |website|}}
+        <li>{{website.title}}</li>
+      {{/each}}
+    </ul>
 
-  <h5>Files</h5>
-  <ul>
-    {{#each model.files as |file|}}
-      <li><a href="{{file.download}}">{{file.title}}</a></li>
-    {{/each}}
-  </ul>
+    <h5>Files</h5>
+    <ul>
+      {{#each model.files as |file|}}
+        <li><a href="{{file.download}}">{{file.title}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
 </div>

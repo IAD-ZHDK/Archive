@@ -1,6 +1,5 @@
-$yellow: #F3DF75;
+@import 'base';
 
-@import "main";
 @import "admin";
 
 body {
@@ -12,3 +11,7 @@ body {
     color: black;
   }
 }
+
+@import 'blocks/footer';
+@import 'blocks/toolbar';
+@import 'blocks/pane';

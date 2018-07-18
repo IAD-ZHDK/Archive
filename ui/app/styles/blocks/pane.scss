@@ -1,0 +1,61 @@
+@import '../base';
+
+.pane {
+  padding: 40px;
+  background-color: white;
+
+  &:nth-child(odd) {
+    background-color: #eee;
+  }
+
+  &--special {
+    background-color: $yellow;
+  }
+
+  &--image {
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &__title {
+    font-size: 64px;
+    font-weight: normal;
+  }
+
+  &__subtitle {
+    width: 65%;
+    float: left;
+    font-size: 24px;
+    margin: 0;
+  }
+
+  &__details {
+    margin: 0;
+    width: 25%;
+    float: right;
+
+    div {
+      margin: 5px 0;
+      span {
+        display: block;
+      }
+    }
+  }
+
+  &__abstract {
+    width: 65%;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  &__video, &__img {
+    width: 100%;
+  }
+}

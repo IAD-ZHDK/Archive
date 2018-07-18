@@ -1,0 +1,57 @@
+@import '../base';
+
+.toolbar {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  justify-content: flex-start;
+
+  &__middle {
+    flex-grow: 1;
+    padding: 5px 20px;
+  }
+
+  &__title {
+    background-color: $yellow;
+    font-family: "Helvetica", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    padding: 3px 6px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__search {
+    border: 0;
+    border-bottom: 2px solid black;
+    width: 100%;
+    max-width: 300px;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &__link {
+      display: inline-block;
+      padding: 9px;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          border-bottom: 2px solid $yellow;
+        }
+      }
+    }
+  }
+}
