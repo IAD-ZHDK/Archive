@@ -30,10 +30,10 @@
 
 <div class="pane">
   <div class="text">
-    {{#each model.videos as |video|}}
-      <video controls poster="{{video.high-res}}">
-        <source src="{{video.mp4-source}}" type="video/mp4">
-        <source src="{{video.webm-source}}" type="video/webm">
+    {{#each model.videos as |vid|}}
+      <video controls poster="{{vid.high-res}}">
+        <source src="{{vid.mp4-source}}" type="video/mp4">
+        <source src="{{vid.webm-source}}" type="video/webm">
         Your browser does not support the video tag.
       </video>
     {{/each}}
