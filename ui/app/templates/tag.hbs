@@ -1,9 +1,9 @@
 <div class="pane">
-  <h2>Tag</h2>
+  <div class="pane__wrapper">
+    <h2 class="pane__title">{{model.tag.name}}</h2>
 
-  {{model.tag}}
-
-  {{#each model.projects as |project|}}
-    {{project}}
-  {{/each}}
+    {{#each model.projects as |project|}}
+      <p>{{link-to project.title 'project' project.slug}}</p>
+    {{/each}}
+  </div>
 </div>
