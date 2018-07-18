@@ -99,6 +99,13 @@
           margin: 0;
           width: 25%;
           float: right;
+
+          div {
+            margin: 5px 0;
+            span {
+              display: block;
+            }
+          }
         }
 
         p.abstract {
